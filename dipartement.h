@@ -2,14 +2,15 @@
 
 #include"company.h"
 
-
+#include<string>
 
 class dipartement
 {
 private:
    int budget = 1000000 ;
    int IDdepartement ;
-   static departementid ;
+   string namedipartement ;
+   
 
        public : dipartement();
    int gettotalpaid();
@@ -18,6 +19,8 @@ private:
    void setbudget(int);
    int getbudget();
    void setiddepartement();
+   void setnamedep(string a);
+   string getnamedep();
    int getiddepartement();
 
    ~dipartement();

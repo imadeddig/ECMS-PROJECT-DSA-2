@@ -1,27 +1,91 @@
+#include "dipartement.h"
+#include "company.h"
+#include <iostream>
+
+using namespace std;
 
 
-#include"company.h"
 
-#include<string>
-
-class dipartement
+dipartement::dipartement()
 {
-private:
-   int budget = 1000000 ;
-   int IDdepartement ;
-   string namedipartement ;
    
+}
 
-       public : dipartement();
-   int gettotalpaid();
-   int gettotalpaid(int beganyear, int endmouth);
-   int gettotalpaid(int beganyear, int beganmouth, int endyear, int endmouth);
-   void setbudget(int);
-   int getbudget();
-   void setiddepartement();
-   void setnamedep(string a);
-   string getnamedep();
-   int getiddepartement();
+int dipartement::gettotalpaid()
+{
+    return 0;
+}
 
-   ~dipartement();
-};
+int dipartement::gettotalpaid(int beganyear, int endmouth)
+{
+    return 0;
+}
+
+int dipartement::gettotalpaid(int beganyear, int beganmouth, int endyear, int endmouth)
+{
+    return 0;
+}
+
+inline void dipartement::setbudget( int place )
+{
+
+    if (place ==1)
+    {
+             budget+=budget*0.15;
+
+}    
+
+else  if ( place <= 10 && place > 1)
+{
+             budget += budget *0.1 ;
+}
+
+else if (place == alldepartement.size())
+{
+             budget -= budget * 0.15;
+           }
+           else if (place < alldepartement.size() && place >= alldepartement.size()-10)
+           {
+            budget -= budget *0.1 ;
+           }
+           
+
+
+
+
+}
+
+inline int dipartement::getbudget()
+{
+    return 0;
+}
+
+inline void dipartement::setiddepartement()
+{
+
+
+}
+
+void dipartement::setnamedep(string a)
+{
+    if (a!='')
+    {
+            namedipartement=a ;
+    }
+    
+}
+
+string dipartement::getnamedep()
+{
+    return namedipartement;
+}
+
+inline int dipartement::getiddepartement()
+{
+    return 0;
+}
+
+
+dipartement::~dipartement()
+{
+}

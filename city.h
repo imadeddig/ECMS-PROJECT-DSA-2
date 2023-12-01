@@ -17,17 +17,17 @@ private:
 
 int cityid ;
 string cityname ;
-static idcity ;
+
 vector<district>districts;
 
 dipartement cityDepartement;
 
 public:
-    city();
-    void setname(string name); 
+    city(string);
+    void setnamecity(string name); 
     dipartement getdipartement();
-    string getname();
-     void setcityid();
+    string getnamecity();
+     void setcityid(int);
     string getcityid();
     vector getdistrict();
    

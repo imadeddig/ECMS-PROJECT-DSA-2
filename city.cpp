@@ -3,15 +3,15 @@
 
 using namespace std ;
 
-int city::idcity=0 ;
 
-city::city()
+
+city::city(string name , int id)
 {
-    cityid=idcity;
-    idcity++;
+    setnamecity(name);
+   
 }
 
-inline void city::setname(string name)
+inline void city::setnamecity(string name, )
 {
     if (name!='')
     {
@@ -25,16 +25,16 @@ dipartement city::getdipartement()
     return dipartement;
 }
 
-inline string city::getname()
+inline string city::getnamecity()
 {
     return cityname;
 }
 
-inline void city::setcityid()
+inline void city::setcityid(int id)
 {
 
-    idcity = cityid ;
-    idcity++ ;
+    cityid=id ;
+   
 }
 
 inline string city::getcityid()

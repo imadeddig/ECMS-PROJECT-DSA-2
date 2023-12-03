@@ -1,39 +1,29 @@
-#ifndef city_h
-#define city_h
-
+#ifndef CITY_H
+#define CITY_H
 #include<iostream>
-
+#include "Department.h"
+#include "District.h"
 #include<string>
-
+using namespace std;
 #include<vector>
 
-#include"dipartement.h"
-
-
-
-class city
+class City
 {
 private:
-
-int cityid ;
-string cityname ;
-
-vector<district>districts;
-
-dipartement cityDepartement;
+string cityID;
+string cityName ;
+vector<District> Districts;
+Department cityDepartement;
 
 public:
-    city(string);
-    void setnamecity(string name); 
-    dipartement getdipartement();
-    string getnamecity();
-     void setcityid(int);
-    string getcityid();
-    vector getdistrict();
-   
+    City(string,int);
+    Department getDepartment();
+    string getCityName();
+     int getCityID();
+    vector<District> getDistricts();   
+    ~City();
 
-    ~city();
+    Customer getCityWinner();
 };
-
 
 #endif

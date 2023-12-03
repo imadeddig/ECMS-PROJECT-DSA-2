@@ -10,14 +10,14 @@ using namespace std;
 class Customer
 {
 private:
-  int ID;
-  static int countID;
-  string customer_name;
-  string miniadress;
-  int family_number;
-  vector<int> ages;
-  double amount_cmltv = 0;
-  string adress;
+//implement a hash function that hashes 2022 to 0.. 
+  vector<vector<Bill>> customerBills;
+  string ID;
+  string customerName;
+  string address;
+  int familyNumber;
+  vector <int> familyNumberAges;
+  double amount_mltv = 0;
 
   struct Date
   { // this struct is for the registration date .
@@ -25,10 +25,6 @@ private:
     int month_regist;
     int day_regist;
   } date_regist;
-
-  Region rgn;
-  District dstrct;
-  city ct;
 
 public:
   Customer(const string &, const string &, int, vector<int>, double, int, int, int, Region, District, city);
@@ -40,7 +36,6 @@ public:
   Date getRegistrationDate() const;
   double getComulativeAmount() const;
   string getAdress();
-  string getMiniAdress();
   // setters function
 
   void setCustomerName(const string &);
@@ -49,7 +44,7 @@ public:
   void setRegistrationDate(int, int, int);
   void setComulativeAmount(double);
   void setMiniAdress(string);
-  void setAdress(Region, District, city);
+  void setAdress(Region, District, City);
 
   //
   void updateAmount(double);

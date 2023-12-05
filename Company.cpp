@@ -68,16 +68,3 @@ Company::Company()
 
 
 
-/*
-        int numberdep = 0;
-
-        for (size_t i = 0; i < countries.size(); i++)
-
-        {
-            for (size_t j = 0; j < countries.at(i).regions.size(); j++)
-            {
-
-                numberdep += countries.at(i).regions.at(j).City.size();
-            }
-        }
-    */

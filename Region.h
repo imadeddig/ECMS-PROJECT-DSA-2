@@ -12,12 +12,10 @@ class Region{
     vector <City> cities;
     public:
     //open a region file, regions id should be "countryid-regionid", search for regions that has the same countryID as this instance, if so, call region constructor and insert the new object into the region vector
-    Region(string,int);
+    Region(string,string);
     string getRegionName();
     //transform string to int
-    int getRegionID();
+    string getRegionID();
     vector<City> getRegionCities();
-    Customer getRegionWinner();
-
 };
 #endif

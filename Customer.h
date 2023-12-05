@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Region.h"
 #include "District.h"
+#include"Bill.h"
 #include <string>
 #include <vector>
 using namespace std;

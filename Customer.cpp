@@ -1,5 +1,6 @@
 
 #include "Customer.h"
+#include"Bill.h"
 #include<fstream>
 
         
@@ -21,12 +22,12 @@ customerBills.resize(3);
     updateAmount(amount);
    setRegistrationDate(year,mouth,day);
 
-    ifstream Bill ;
-    Bill.open("bill.txt");
+    ifstream Bil ;
+    Bil.open("bill.txt");
     string line ;
-    getline(Bill,line);
+    getline(Bil,line);
 
-    while (getline(Bill , line))
+    while (getline(Bil , line))
     {
         string custid = line.substr(0, line.find_first_of(','));
         line=line.substr(line.find_first_of(','));
@@ -42,11 +43,12 @@ customerBills.resize(3);
             line = line.substr(line.find_first_of(','));
             string cumulative = line.substr(0, line.find_first_of(','));
 
-            BILL billl =BILL(stoi(injaction), stoi(consumption), stoi(cumulative),stoi(billmouth));
+            Bill billl = Bill(stoi(injaction), stoi(consumption));
 
             if (hashyear(stoi(billyear)) >= customerBills.size())
             {
-                customerBills.push_back(vector<Bill>);
+                vector<Bill> bbill;
+                customerBills.push_back(bbill);
                 customerBills[customerBills.size()].resize(12);        
             }
             
@@ -87,7 +89,7 @@ int Customer::hashmouth(int a)
 
 
 
-void Customer::setFamilyAges(vector<int> ages)
+void Customer::setFamilyAges(const vector<int>& ages )
 {
     int size = ages.size();
     familyNumberAges.resize(size);

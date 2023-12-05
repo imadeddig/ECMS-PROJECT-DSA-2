@@ -26,10 +26,10 @@ public:
     // return customer with most injection
     Customer getWinnerCustomer();
     // printing customers bills based on user choice
-    void printBillCompay(int countryID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
-    void printBillCompay(int regionID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
-    void printBillCompay(int cityID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
-    void printBillCompay(int ditrictID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
+    void printBillCompany(int countryID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
+    void printBillCompany(int regionID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
+    void printBillCompany(int cityID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
+    void printBillCompany(int ditrictID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
     ~Company();
 
     // inserting a customer (additonal function) this is a whole new customer

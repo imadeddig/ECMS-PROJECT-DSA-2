@@ -22,13 +22,13 @@ Customer::Customer(const string &name, const string &id, vector<int> ages, doubl
         if (custid == ID)
         {
             string billyear = line.substr(0,line.find_first_of(','));
-            line = line.substr( line.find_first_of(','));
+            line = line.substr( line.find_first_of(',')+1);
             string billmouth = line.substr(0, line.find_first_of(','));
-            line = line.substr(line.find_first_of(','));
+            line = line.substr(line.find_first_of(',')+1);
             string injaction = line.substr(0, line.find_first_of(','));
-            line = line.substr(line.find_first_of(','));
+            line = line.substr(line.find_first_of(',')+1);
             string consumption = line.substr(0, line.find_first_of(','));
-            line = line.substr(line.find_first_of(','));
+            line = line.substr(line.find_first_of(',')+1);
             string cumulative = line.substr(0, line.find_first_of(','));
 
             BILL billl =BILL(atoi(injaction), atoi(consumption), atoi(cumulative),atoi(billmouth));

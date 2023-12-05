@@ -7,15 +7,16 @@ using namespace std;
 class Department
 {
 private:
-   int budget = 1000000;
-   string DepartmentName;
+    int budget ;
+    string DepartmentName;
+    string Departmentid;
 
 public:
-   Department();
-   void setBudget(int);
-   int getBudget();
-   void setDepartmentName(string);
-   string getDepartmentName();
-   ~Department();
+    Department(string,string,int);
+    void updateBudget(float);
+    int getBudget();
+    
+    string getDepartmentName();
+    ~Department();
 };
 #endif

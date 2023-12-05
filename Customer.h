@@ -10,46 +10,57 @@ using namespace std;
 class Customer
 {
 private:
-//implement a hash function that hashes 2022 to 0.. 
-  vector<vector<Bill>> customerBills;
-  string ID;
-  string customerName;
-  string address;
-  int familyNumber;
-  vector <int> familyNumberAges;
-  double amount_mltv = 0;
+    // implement a hash function that hashes 2022 to 0..
+    vector<vector<Bill>> customerBills;
+    string ID;
+    string customerName;
+    string address;
+   
+    vector<int> familyNumberAges;
+    double amount_mltv = 0;
+   
 
-  struct Date
-  { // this struct is for the registration date .
-    int year_regist;
-    int month_regist;
-    int day_regist;
-  } date_regist;
+    struct Date
+    { // this struct is for the registration date .
+        int year_regist;
+        int month_regist;
+        int day_regist;
+
+    } date_regist;
 
 public:
-  Customer(const string &, const string &, int, vector<int>, double, int, int, int, Region, District, city);
-  // getters function
-  int getID();
-  string getCustomerName() const;
-  int getFamilyNumber() const;
-  vector<int> getFamilyAges() const;
-  Date getRegistrationDate() const;
-  double getComulativeAmount() const;
-  string getAdress();
-  // setters function
+    Customer(const string &, const string &, vector<int>, double, int, int, int,string);
+    // getters function 
+    // will transforme the string to integer and return just the last part
+    int getID();
+    string getCustomerName() const;
+    int getFamilyNumber() const;
+    vector<int> getFamilyAges() const;
+    Date getRegistrationDate() const;
+    double getComulativeAmount() const;
+    string getAdress();
 
-  void setCustomerName(const string &);
-  void setFamilyNumber(int);
-  void setFamilyAges(const vector<int> &);
-  void setRegistrationDate(int, int, int);
-  void setComulativeAmount(double);
-  void setMiniAdress(string);
-  void setAdress(Region, District, City);
+    // setters function
 
-  //
-  void updateAmount(double);
+    void setCustomerName(const string &);
 
-  void print();
+    
+
+    void setFamilyAges(const vector<int> &);
+
+    void setRegistrationDate(int, int, int);
+
+   
+   
+    void setAdress(string);
+
+    //
+    void updateAmount(double);
+// take a year and return it position
+    int hashyear(int);
+    int hashmouth (int) ;
+
+    void print();
 };
 
 #endif

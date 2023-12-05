@@ -1,4 +1,73 @@
+
 #include "Customer.h"
+#include<fstream>
+Customer::Customer(const string &name, const string &id, vector<int> ages, double amount , int day, int mouth, int year, string adress)
+{
+    setCustomerName(name);
+    setAdress(adress);
+    ID=id;
+    setFamilyAges(ages);
+    updateAmount(amount);
+   setRegistrationDate(year,mouth,day);
+
+    ifstream Bill ;
+    Bill.open("bill.txt");
+    string line ;
+    getline(Bill,line);
+
+    while (getline(Bill , line))
+    {
+        string custid = line.substr(0, line.find_first_of(','));
+        line=line.substr(line.find_first_of(','));
+        if (custid == ID)
+        {
+            string billyear = line.substr(0,line.find_first_of(','));
+            line = line.substr( line.find_first_of(','));
+            string billmouth = line.substr(0, line.find_first_of(','));
+            line = line.substr(line.find_first_of(','));
+            string injaction = line.substr(0, line.find_first_of(','));
+            line = line.substr(line.find_first_of(','));
+            string consumption = line.substr(0, line.find_first_of(','));
+            line = line.substr(line.find_first_of(','));
+            string cumulative = line.substr(0, line.find_first_of(','));
+
+            BILL billl =BILL(atoi(injaction), atoi(consumption), atoi(cumulative),atoi(billmouth));
+
+            customerBills[hashyear(atoi(billyear))][hashmouth(atoi(billmouth))] = billl ;
+                }
+        
+        
+    }
+    
+    
+    
+}
+
+int Customer::hashyear(int y)
+{
+    return y-2020 ;
+}
+
+int Customer::hashmouth(int a)
+{
+    return a-1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void Customer::setFamilyAges(vector<int> ages)
 {

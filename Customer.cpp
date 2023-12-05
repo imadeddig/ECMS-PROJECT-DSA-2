@@ -56,7 +56,7 @@ Customer::Date Customer::getRegistrationDate() const
 
 double Customer::getComulativeAmount() const
 {
-  return amount_cmltv;
+  return amount_mltv;
 }
 
 void Customer::setRegistrationDate(int year, int month, int day)

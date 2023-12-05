@@ -1,8 +1,19 @@
 
 #include "Customer.h"
 #include<fstream>
+
+        
 Customer::Customer(const string &name, const string &id, vector<int> ages, double amount , int day, int mouth, int year, string adress)
 {
+
+customerBills.resize(3);
+    for (size_t i = 0; i < 3; i++)
+    {
+       customerBills[i].resize(12);
+    }
+    
+
+
     setCustomerName(name);
     setAdress(adress);
     ID=id;
@@ -22,18 +33,26 @@ Customer::Customer(const string &name, const string &id, vector<int> ages, doubl
         if (custid == ID)
         {
             string billyear = line.substr(0,line.find_first_of(','));
-            line = line.substr( line.find_first_of(',')+1);
+            line = line.substr( line.find_first_of(','));
             string billmouth = line.substr(0, line.find_first_of(','));
-            line = line.substr(line.find_first_of(',')+1);
+            line = line.substr(line.find_first_of(','));
             string injaction = line.substr(0, line.find_first_of(','));
-            line = line.substr(line.find_first_of(',')+1);
+            line = line.substr(line.find_first_of(','));
             string consumption = line.substr(0, line.find_first_of(','));
-            line = line.substr(line.find_first_of(',')+1);
+            line = line.substr(line.find_first_of(','));
             string cumulative = line.substr(0, line.find_first_of(','));
 
-            BILL billl =BILL(atoi(injaction), atoi(consumption), atoi(cumulative),atoi(billmouth));
+            BILL billl =BILL(stoi(injaction), stoi(consumption), stoi(cumulative),stoi(billmouth));
 
-            customerBills[hashyear(atoi(billyear))][hashmouth(atoi(billmouth))] = billl ;
+            if (hashyear(stoi(billyear)) >= customerBills.size())
+            {
+                customerBills.push_back(vector<Bill>);
+                customerBills[customerBills.size()].resize(12);        
+            }
+            
+
+            customerBills[hashyear(stoi(billyear))][hashmouth(stoi(billmouth))]=billl;
+
                 }
         
         
@@ -42,7 +61,6 @@ Customer::Customer(const string &name, const string &id, vector<int> ages, doubl
     
     
 }
-
 int Customer::hashyear(int y)
 {
     return y-2020 ;

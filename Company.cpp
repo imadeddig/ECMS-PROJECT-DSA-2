@@ -1,4 +1,12 @@
 #include "Company.h"
+using namespace std;
+#include "fstream"
+void Company::addCustomer(string address, int familyMembers, vector<int> familyMemberAges, string customerName, int countryID, int regionID, int cityID, int districtID)
+{
+    
+}
+
+#include "Company.h"
 #include "Country.h"
 
 Company::Company()
@@ -18,26 +26,27 @@ Company::Company()
         string countrieid = line.substr(0, line.find_first_of(','));
 
         string countriename = line.substr(line.find_first_of(',') + 1, line.length() - 1);
-        countries.push_back(District(countrieid, countriename));
+        countries.push_back(Country(countrieid, countriename));
     }
     countrie.close();
-    
+
     fstream departementorder;
-    departementorder.open("departementorder.text") if (!departementorder)
+    departementorder.open("departementorder.text");
+    if (!departementorder)
     {
-        cerr << "change the path name of your departement file to departement.text " exit(1);
+        cerr << "change the path name of your departement file to departement.text ";
+        exit(1);
     }
 
     string line;
     // the departement are store id,name,budget
     getline(departementorder, line);
-    while (getline(departementorder, line);)
+    while (getline(departementorder, line))
     {
         vector<Department> a;
         do
         {
 
-            
             // i twill be like that dep1id,DepartmentName,ped1budget,performance , dep2  ;
 
             string depid = line.substr(0, line.find_first_of(','));
@@ -48,23 +57,11 @@ Company::Company()
             line = line.substr(line.find_first_of(','));
             string depperformance = line.substr(0, line.find_first_of(','));
             line = line.substr(line.find_first_of(','));
-           
-           
 
-            a.push_back( Department(depid, depname, stoi(depbudget)));
+            a.push_back(Department(depid, depname, stoi(depbudget)));
 
-
-        } while (line !='/n');
+        } while (line != "/n");
 
         departmentsStored.push_back(a);
-       
-        }
+    }
 }
-
-
-
-
-
-
-
-

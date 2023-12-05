@@ -37,4 +37,33 @@ void Customer::print()
 int Customer::getFamilyNumber() const
 {
     return familyNumberAges.size();
+} 
+
+int Customer::getID()
+{
+  int index = ID.find_last_of('-');
+  string last_part = ID.substr(index + 1);
+
+  int id_number = stoi(last_part);
+
+  return id_number;
 }
+
+Customer::Date Customer::getRegistrationDate() const
+{
+  return date_regist;
+}
+
+double Customer::getComulativeAmount() const
+{
+  return amount_cmltv;
+}
+
+void Customer::setRegistrationDate(int year, int month, int day)
+{
+  date_regist.year_regist = year;
+  date_regist.month_regist = month;
+  date_regist.day_regist = day;
+}
+
+

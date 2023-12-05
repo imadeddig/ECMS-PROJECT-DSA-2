@@ -135,4 +135,12 @@ void Customer::setRegistrationDate(int year, int month, int day)
   date_regist.day_regist = day;
 }
 
+string Customer::getCustomerName() const
+{
+  return customerName;
+}
 
+vector<int> Customer::getFamilyAges() const
+{
+  return familyNumberAges;
+}

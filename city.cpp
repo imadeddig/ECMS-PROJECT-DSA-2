@@ -48,8 +48,8 @@ City::City(string name, string id)
         string depid = line.substr(0, line.find_first_of(','));
         if (depid == cityID)
         {
-            string name = line.substr(line.find_first_of(','), line.find_last_of(','));
-            string budg = line.substr(line.find_last_of(','),line.length()-1);
+            string name = line.substr(line.find_first_of(',')+1, line.find_last_of(','));
+            string budg = line.substr(line.find_last_of(',')+1,line.length()-1);
 
             cityDepartement = Department(depid,name,budg);
             break;

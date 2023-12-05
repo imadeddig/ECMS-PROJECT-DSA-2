@@ -3,7 +3,7 @@
 #include <iostream>
 #include<fstream>
 #include<string>
-#include "Customer"
+#include "Customer.h"
 
 #include <vector>
 
@@ -28,22 +28,22 @@ City::City(string name, string id)
         string districtid = line.substr(0, line.find_first_of(','));
         if (districtid.substr(0, districtid.find_last_of('-')) == getCityID())
         {
-            string cityName = line.substr(line.find_first_of(',') + 1, line.length() - 1);
+            string districtName = line.substr(line.find_first_of(',') + 1, line.length() - 1);
             Districts.push_back(District(districtid, districtName));
         }
     }
     districtsFile.close();
     ifstream departementfile ;
-    departementfile.open("departement.text")
+    departementfile.open("departement.text");
     if (!departementfile)
     {
-        cerr << "change the path name of your departement file to departement.text "
+        cerr << "change the path name of your departement file to departement.text ";
         exit(1);
     }
     string line ;
     // the departement are store id,name,budget
     getline(departementfile,line);
-    while (getline(departementfile, line);)
+    while (getline(departementfile, line))
     {
         string depid = line.substr(0, line.find_first_of(','));
         if (depid == cityID)
@@ -51,7 +51,7 @@ City::City(string name, string id)
             string name = line.substr(line.find_first_of(',')+1, line.find_last_of(','));
             string budg = line.substr(line.find_last_of(',')+1,line.length()-1);
 
-            cityDepartement = Department(depid,name,budg);
+            cityDepartement = Department(depid,name,stoi(budg));
             break;
             
         }
@@ -70,9 +70,9 @@ Department City::getDepartment()
 
 void City::setcityname(string name)
 {
-    if (name !='')
+    if (name !="")
     {
-        cityname = name;
+        cityName = name;
     }
 }
 

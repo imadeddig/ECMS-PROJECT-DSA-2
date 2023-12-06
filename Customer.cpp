@@ -104,6 +104,11 @@ void Customer::setAdress(string a)
     address=a;
 }
 
+vector<vector<Bill>> Customer::getCustomerBills()
+{
+    return customerBills;
+}
+
 void Customer::updateAmount(double a)
 {
     amount_mltv+=a;
@@ -128,7 +133,7 @@ int Customer::getFamilyNumber() const
     return familyNumberAges.size();
 } 
 
-int Customer::getID()
+int Customer::getID() const
 {
   int index = ID.find_last_of('-');
   string last_part = ID.substr(index + 1);

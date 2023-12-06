@@ -63,6 +63,11 @@ string District::getDistrictName()
     return districtName;
 }
 
+BinarySearchTree* District::getCustomers()
+{
+    return customersTree;
+}
+
 void District::getDayWeather(int &day, int &month, int &year)
 {
     YearWeather temp = climate.yearsweather[climate.hashFunction(year)];

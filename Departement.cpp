@@ -2,7 +2,11 @@
 #include"City.h"
 #include "Company.h"
 
-Department::Department(string name, string id, float bud, float spent)
+Department::Department()
+{
+}
+
+Department::Department(string name="", string id="", float bud=0, float spent=0)
 {
 
     if (name != "")
@@ -35,13 +39,7 @@ int Department::getBudget()
     return budget;
 }
 
-Department::Department()
-{
-}
 
-Department::Department(int)
-{
-}
 
 string Department::getDepartmentName()
 {
@@ -54,7 +52,7 @@ Department::~Department()
 
 float Department::getperformance()
 {
-    return performance;
+    return spent;
 }
 
 float Department::getspent()

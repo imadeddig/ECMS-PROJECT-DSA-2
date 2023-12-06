@@ -61,7 +61,7 @@ public:
         return findMax(root);
     }
 
-    bool contains(const Customer &x) const
+    Customer* contains(int x) const
     {
         return contains(x, root);
     }
@@ -153,16 +153,16 @@ private:
         return t->element;
     }
 
-    bool contains(const Customer &x, BinaryNode *t) const
+    Customer* contains(int x, BinaryNode *t) const
     {
         if (t == nullptr)
-            return false;
-        else if (x.getID() < t->element.getID())
+            return;
+        else if (x < t->element.getID())
             return contains(x, t->left);
-        else if (t->element.getID() < x.getID())
+        else if (t->element.getID() < x)
             return contains(x, t->right);
         else
-            return true;
+            return &(t->element);
     }
     void makeEmpty(BinaryNode *&t)
     {

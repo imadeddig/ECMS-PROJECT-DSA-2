@@ -1,12 +1,18 @@
 #ifndef COMPANY_H
 #define COMPANY_H
 
+#include "Country.h"
 #include "Department.h"
 #include "Company.h"
 #include "Customer.h"
-#include "Country.h"
+#include "Region.h"
+#include "City.h"
 #include <vector>
 #include <iostream>
+#include <chrono>
+#include <ctime>
+#include <algorithm>
+
 using namespace std;
 class Company
 {
@@ -35,15 +41,8 @@ public:
 
     // inserting a customer (additonal function) this is a whole new customer
     void addCustomer(string address, int familyMembers, vector<int> familyMemberAges, string customerName, int countryID, int regionID, int cityID, int districtID);
-    // this one is for the already existed customers in our files (additional function)
-    void insertCustomer();
-    // setting the new month's bill from a file for each customer (additional function), give conditions to a specific date that departments should be inserted and sorted in that date, if not, show an error to the user
     void setBillFile();
-
-    // company now needs to sort all its data in a format that we could then search, we need to implement hash of countries goes to regions goes to cities goes to districts goes to a tree of customer
-    void setPlan();
-    // this function is going to enter a file, and then keep on calling the instances's constructors
-
-    void setWeather();
+     bool comparedep(Department, Department);
+ 
 };
 #endif

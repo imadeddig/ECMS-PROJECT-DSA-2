@@ -123,3 +123,96 @@ void Company::setBillFile()
     
 
 }
+
+
+
+vector<Department> Company::orderAlldepartement()
+{
+  // get it from stackoverflow
+  auto now = chrono::system_clock::now();
+
+  time_t currentTime = chrono::system_clock::to_time_t(now);
+
+  tm *timeInfo = localtime(&currentTime);
+
+  if (timeInfo->tm_mon + 1 == 12 && timeInfo->tm_mday == 17)
+  {
+    // creat a vector to store all the departement .
+    vector<Department> AllDepartement;
+    // a loops to get into all the departement and store them into the vector
+    for (int i = 0; i < countries.size(); i++)
+    {
+      for (int j = 0; j < countries[i].getCountryRegions().size(); j++)
+      {
+        for (int c = 0; c < countries[i].getCountryRegions()[j].getRegionCities().size(); c++)
+        {
+          AllDepartement.push_back(countries[i].getCountryRegions()[j].getRegionCities()[c].getDepartment());
+        }
+      }
+    }
+    // sort the vector depends on the function comparedep (see its implimentation )
+    sort(AllDepartement.begin(), AllDepartement.end(), comparedep);
+
+    for (int i = 0; i < 10; i++)
+    {
+      // add +15% to the best departement
+      if (i == 0)
+      {
+        AllDepartement[i].updateBudget(0.15);
+      }
+      // add +10% to the next 9 departement
+      else
+      {
+        AllDepartement[i].updateBudget(0.1);
+      }
+    }
+
+    // remove 15% to the ten last ones
+
+    int length = AllDepartement.size() - 1;
+
+    for (int j = length; j > length - 10; j--)
+    {
+      // sub -15% to the last departement
+      if (j == length)
+      {
+        AllDepartement[j].updateBudget(-0.15);
+      }
+      else
+      {
+        // sub -10% to the next 9 departement (the 9 before the last one)
+        AllDepartement[j].updateBudget(-0.1);
+      }
+    }
+
+    storeNewDepartment(AllDepartement);
+    return AllDepartement;
+  }
+
+  else
+  {
+    cout << "You can't call the function because you are not in the right day !" << endl;
+  }
+}
+
+void Company::storeNewDepartment(vector<Department> newdprtmnt)
+{
+
+  departmentsStored.push_back(newdprtmnt);
+}
+
+void Company::getDepartmentPerformance(int startYear, int endYear)
+{
+  
+}
+
+Customer Company::getWinnerCustomer()
+{
+  return winner;
+}
+
+// compare between the deparetemnt depends on the budget
+bool Company::comparedep(Department a, Department b)
+{
+  return a.getBudget() > b.getBudget();
+}

@@ -7,12 +7,6 @@
 #include "fstream"
 #include "Country.h"
 
-void Company::addCustomer(string address, int familyMembers, vector<int> familyMemberAges, string customerName, int countryID, int regionID, int cityID, int districtID)
-{
-    
-}
-
-
 Company::Company()
 {
 
@@ -68,6 +62,14 @@ Company::Company()
 
         departmentsStored.push_back(a);
     }
+}
+
+void Company::addCustomer(const string &name, const string &id, vector<int> ages, double amount, int day, int mouth, int year, string adress, int countryID, int regionID, int cityID, int districtID)
+{
+    Customer customerMax =countries[countryID].getCountryRegions()[regionID].getRegionCities()[cityID].getDistricts()[districtID].getCustomers()->findMax();
+    int newid=customerMax.getID()+1;
+    Customer newCostumer(name,to_string(newid),ages,amount,day,mouth,year,adress) ;
+    countries[countryID].getCountryRegions()[regionID].getRegionCities()[cityID].getDistricts()[districtID].getCustomers()->insert(newCostumer);
 }
 
 void Company::setBillFile()

@@ -3,7 +3,10 @@
 #include"Bill.h"
 #include<fstream>
 
-        
+
+Customer::Customer()
+{
+}        
 Customer::Customer(const string &name, const string &id, vector<int> ages, double amount , int day, int mouth, int year, string adress)
 {
 

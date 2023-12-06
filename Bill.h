@@ -17,7 +17,6 @@ int billMonth;
 public:
     Bill(const double&, const double&);
     void setBill(const double &, const double &);
-    void getBill();
     double getEnergyInjection();
     double getEnergyConsumption();
     double getPriceTotalConsumption();

@@ -29,6 +29,7 @@ private:
     } date_regist;
 
 public:
+  Customer();
     Customer(const string &, const string &, vector<int>, double, int, int, int, string);
     // getters function
     // will transforme the string to integer and return just the last part

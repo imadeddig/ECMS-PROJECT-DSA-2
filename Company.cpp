@@ -65,3 +65,57 @@ Company::Company()
         departmentsStored.push_back(a);
     }
 }
+
+void Company::setBillFile()
+{
+    //i have a new file fih customers last month bills, lazem ndkhel jded
+    //lzm i get this date month!
+    fstream monthlyBill;
+    monthlyBill.open("monthlybill.txt");
+    string line;
+    getline(monthlyBill,line);
+    while (getline(monthlyBill,line))
+    {
+        //customerid , consumption , injection
+        //00-00-00-00-00
+        string customerIDs = line.substr(0,line.find_first_of(","));
+        string customerID = customerIDs;
+        line = line.substr(line.find_first_of(",")+1);
+        string consumptionAmount = line.substr(0,line.find_first_of(","));
+        line = line.substr(line.find_first_of(",")+1);
+        string injectionAmount = line.substr(0,line.find_first_of(","));
+        line = line.substr(line.find_first_of(",")+1);
+        //now neqsm my id for fast access : 
+
+            string countryPart = customerID.substr(0,customerID.find_first_of("-"));
+        customerID = customerID.substr(customerID.find_first_of("-")+1);
+                string RegionPart = customerID.substr(0,customerID.find_first_of("-"));
+        customerID = customerID.substr(customerID.find_first_of("-")+1);
+                string CityPart = customerID.substr(0,customerID.find_first_of("-"));
+        customerID = customerID.substr(customerID.find_first_of("-")+1);
+                string DistrictPart = customerID.substr(0,customerID.find_first_of("-"));
+        customerID = customerID.substr(customerID.find_first_of("-")+1);
+        string UniquePart = customerID.substr(0,customerID.find_first_of("-"));
+        customerID = customerID.substr(customerID.find_first_of("-")+1);
+        auto billToBeInserted = Bill(stod(injectionAmount),stod(consumptionAmount));
+          BinarySearchTree* customerTreeRoot = countries[stoi(countryPart)].getCountryRegions()[stoi(RegionPart)].getRegionCities()[stoi(CityPart)].getDistricts()[stoi(DistrictPart)].getCustomers();
+
+          Customer* a = customerTreeRoot->contains(stoi(UniquePart));
+
+          auto now = std::chrono::system_clock::now();
+
+  std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
+
+  std::tm *timeInfo = std::localtime(&currentTime);
+  int monthNow = timeInfo->tm_mon+1;
+  int yearNow = timeInfo->tm_year;
+
+  a->getCustomerBills()[yearNow-2020][monthNow] = billToBeInserted;
+         
+          
+          
+    }
+    monthlyBill.close();
+    
+
+}

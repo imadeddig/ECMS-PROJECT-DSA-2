@@ -164,3 +164,8 @@ vector<int> Customer::getFamilyAges() const
 {
   return familyNumberAges;
 }
+
+string Customer::getAdress()
+{
+  return address;
+}

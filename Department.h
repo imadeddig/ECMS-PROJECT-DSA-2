@@ -20,7 +20,7 @@ public:
     int getBudget();
     float getperformance();
     float getspent();
-    voidsetspent(float );
+    void setspent(float );
     
     
     string getDepartmentName();

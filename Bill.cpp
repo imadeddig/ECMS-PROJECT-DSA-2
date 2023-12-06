@@ -14,14 +14,7 @@ void Bill::setBill(const double &c, const double &i)
     setTotalDifference();
 }
 
-void Bill::getBill(double &c, double &i, double &pc, double &pi, double &td)
-{
-    c = EnergyConsumption;
-    i = EnergyInjection;
-    pc = PriceTotalConsumption;
-    pi = PriceTotalInjection;
-    td = TotalDifference;
-}
+
 
 void Bill::setEnergyConsumption(const double &c)
 {

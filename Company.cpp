@@ -1,13 +1,17 @@
 #include "Company.h"
-using namespace std;
+#include "District.h"
+#include "ctime"
+#include "chrono"
+#include "Bill.h"
+#include "BinarySearchTree.h"
 #include "fstream"
+#include "Country.h"
+
 void Company::addCustomer(string address, int familyMembers, vector<int> familyMemberAges, string customerName, int countryID, int regionID, int cityID, int districtID)
 {
     
 }
 
-#include "Company.h"
-#include "Country.h"
 
 Company::Company()
 {

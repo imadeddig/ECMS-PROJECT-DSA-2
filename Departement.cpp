@@ -2,7 +2,7 @@
 #include"City.h"
 #include "Company.h"
 
-Department::Department(string name, string id, int bud)
+Department::Department(string name, string id, float bud, float spent)
 {
 
     if (name != "")
@@ -11,13 +11,11 @@ Department::Department(string name, string id, int bud)
     }
 
     Departmentid = id;
-    if (bud!=0)
-    {
+    
        budget=bud;
-    }
+    
     
 }
-
 
 
 void Department::updateBudget(float percentage)

@@ -1,8 +1,8 @@
 #include "City.h"
 #include "District.h"
 #include <iostream>
-#include<fstream>
-#include<string>
+#include <fstream>
+#include <string>
 #include "Customer.h"
 
 #include <vector>
@@ -33,34 +33,34 @@ City::City(string name, string id)
         }
     }
     districtsFile.close();
-    ifstream departementfile ;
+    ifstream departementfile;
     departementfile.open("departement.text");
     if (!departementfile)
     {
         cerr << "change the path name of your departement file to departement.text ";
         exit(1);
     }
-    string line ;
-    // the departement are store id,name,budget
-    getline(departementfile,line);
+    string line;
+    // the departement are store id,name,budget,spent
+    getline(departementfile, line);
     while (getline(departementfile, line))
     {
         string depid = line.substr(0, line.find_first_of(','));
-        if (depid == cityID)
+        string deppid = depid.substr(0, depid.find_last_not_of('-'));
+        if (deppid == cityID)
         {
-            string name = line.substr(line.find_first_of(',')+1, line.find_last_of(','));
-            string budg = line.substr(line.find_last_of(',')+1,line.length()-1);
+            line = line.substr(line.find_first_of(',') + 1);
 
-            cityDepartement = Department(depid,name,stoi(budg));
+            string name = line.substr(0, line.find_first_of(','));
+            line = line.substr(line.find_first_of(',') + 1);
+
+            string budg = line.substr(0, line.find_first_of(','));
+            string spent = line.substr(line.find_first_of(',') + 1);
+
+            cityDepartement = Department(depid, name, stod(budg), stod(spent));
             break;
-            
         }
-        
     }
-    
-    
-
-
 }
 
 Department City::getDepartment()
@@ -70,7 +70,7 @@ Department City::getDepartment()
 
 void City::setcityname(string name)
 {
-    if (name !="")
+    if (name != "")
     {
         cityName = name;
     }
@@ -94,4 +94,3 @@ vector<District> City::getDistricts()
 City::~City()
 {
 }
-

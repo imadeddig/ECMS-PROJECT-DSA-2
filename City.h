@@ -2,10 +2,10 @@
 #define CITY_H
 #include <iostream>
 #include "Department.h"
-#include "./District.h"
+#include "District.h"
 #include <string>
-using namespace std;
 #include<vector>
+using namespace std;
 
 class City
 {

@@ -10,11 +10,18 @@ private:
     int budget ;
     string DepartmentName;
     string Departmentid;
+    float spent ;
+    
 
 public:
-    Department(string,string,int);
+    Department();
+    Department(string,string,float,float);
     void updateBudget(float);
     int getBudget();
+    float getperformance();
+    float getspent();
+    voidsetspent(float );
+    
     
     string getDepartmentName();
     ~Department();

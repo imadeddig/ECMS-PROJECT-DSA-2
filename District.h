@@ -13,7 +13,7 @@ class District
     string districtName;
     string districtID;
     int numOfCustomers=0;
-    BinarySearchTree<Customer> *customersTree; // customers that are in that region
+    BinarySearchTree *customersTree; // customers that are in that region
     HashWeather  climate;
     //for ids, there should be a counter globally in order to set the id
 
@@ -21,7 +21,7 @@ class District
     District(const string&, const string&);
     string getDistrictID();
     string getDistrictName();
-    BinarySearchTree<Customer> *getCustomers(); // return a pointer to the root of a binary tree that contains all the customers in the district
+    BinarySearchTree* getCustomers(); // return a pointer to the root of a binary tree that contains all the customers in the district
     void getDayWeather(int& day, int& month,int&year);
     HashWeather getWeather();
 };

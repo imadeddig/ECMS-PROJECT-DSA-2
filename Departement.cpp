@@ -18,15 +18,15 @@ Department::Department(string name, string id, float bud, float spent)
 }
 
 
+
 void Department::updateBudget(float percentage)
 {
     
     
 
-    if (percentage>0&& percentage<1)
-    {
+    
        budget+=budget*percentage;
-    }
+    
     
 }
 
@@ -35,6 +35,13 @@ int Department::getBudget()
     return budget;
 }
 
+Department::Department()
+{
+}
+
+Department::Department(int)
+{
+}
 
 string Department::getDepartmentName()
 {
@@ -43,4 +50,22 @@ string Department::getDepartmentName()
 
 Department::~Department()
 {
+}
+
+float Department::getperformance()
+{
+    return performance;
+}
+
+float Department::getspent()
+{
+return spent;
+}
+
+Department::voidsetspent(float amount)
+{
+    if (spent-amount)
+    {
+       spent = spent - amount;
+    }
 }

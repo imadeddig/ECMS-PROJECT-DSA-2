@@ -3,9 +3,9 @@
 #include <iostream>
 #include "Region.h"
 #include "District.h"
-#include"Bill.h"
 #include <string>
 #include <vector>
+#include "Bill.h"
 using namespace std;
 
 class Customer
@@ -16,10 +16,9 @@ private:
     string ID;
     string customerName;
     string address;
-   
+
     vector<int> familyNumberAges;
     double amount_mltv = 0;
-   
 
     struct Date
     { // this struct is for the registration date .
@@ -30,10 +29,10 @@ private:
     } date_regist;
 
 public:
-    Customer(const string &, const string &, vector<int>, double, int, int, int,string);
-    // getters function 
+    Customer(const string &, const string &, vector<int>, double, int, int, int, string);
+    // getters function
     // will transforme the string to integer and return just the last part
-    int getID();
+    int getID() const;
     string getCustomerName() const;
     int getFamilyNumber() const;
     vector<int> getFamilyAges() const;
@@ -45,21 +44,18 @@ public:
 
     void setCustomerName(const string &);
 
-    
-
     void setFamilyAges(const vector<int> &);
 
     void setRegistrationDate(int, int, int);
 
-   
-   
     void setAdress(string);
+    vector<vector<Bill>> getCustomerBills();
 
     //
     void updateAmount(double);
-// take a year and return it position
+    // take a year and return it position
     int hashyear(int);
-    int hashmouth (int) ;
+    int hashmouth(int);
 
     void print();
 };

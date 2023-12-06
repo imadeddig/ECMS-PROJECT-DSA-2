@@ -62,7 +62,7 @@ float Department::getspent()
 return spent;
 }
 
-Department::voidsetspent(float amount)
+void Department::setspent(float amount)
 {
     if (spent-amount)
     {

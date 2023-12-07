@@ -24,70 +24,11 @@ using namespace std;
 // Throws UnderflowException as warranted
 
 // template <typename Customer>
-class BinarySearchTree
-{
-public:
-    BinarySearchTree() : root{nullptr}
-    {
-    }
 
-    BinarySearchTree(BinarySearchTree &&rhs) : root{rhs.root}
-    {
-        rhs.root = nullptr;
-    }
 
-    ~BinarySearchTree()
-    {
-        makeEmpty();
-    }
+// 5arajna hed struct + ahbet l public we added function get root
 
-    BinarySearchTree &operator=(BinarySearchTree &&rhs)
-    {
-        std::swap(root, rhs.root);
-        return *this;
-    }
-
-    const Customer &findMin() const
-    {
-        if (isEmpty())
-            throw UnderflowException{};
-        return findMin(root)->element;
-    }
-
-    Customer findMax() const
-    {
-        if (isEmpty())
-            throw UnderflowException{};
-        return findMax(root);
-    }
-
-    Customer* contains(int x) const
-    {
-        return contains(x, root);
-    }
-
-    bool isEmpty() const
-    {
-        return root == nullptr;
-    }
-
-    void makeEmpty()
-    {
-        makeEmpty(root);
-    }
-
-    void insert(const Customer &x)
-    {
-        insert(x, root);
-    }
-
-    void remove(const Customer &x)
-    {
-        remove(x, root);
-    }
-
-private:
-    struct BinaryNode
+ struct BinaryNode
     {
         Customer element;
         BinaryNode *left;
@@ -100,9 +41,14 @@ private:
             : element{std::move(theElement)}, left{lt}, right{rt} {}
     };
 
+class BinarySearchTree
+{
+private:
+   
+
     BinaryNode *root;
 
-    void insert(const Customer& x, BinaryNode *&t)
+    void insert(const Customer &x, BinaryNode *&t)
     {
         if (t == nullptr)
             t = new BinaryNode{x, nullptr, nullptr};
@@ -135,7 +81,6 @@ private:
         }
     }
 
-
     BinaryNode *findMin(BinaryNode *t) const
     {
         if (t == nullptr)
@@ -153,7 +98,7 @@ private:
         return t->element;
     }
 
-    Customer* contains(int x, BinaryNode *t) const
+    Customer *contains(int x, BinaryNode *t) const
     {
         if (t == nullptr)
             return;
@@ -173,6 +118,72 @@ private:
             delete t;
         }
         t = nullptr;
+    }
+
+public:
+    BinarySearchTree() : root{nullptr}
+    {
+    }
+
+    // get root
+    BinaryNode *getroot()
+    {
+        return root;
+    }
+
+    BinarySearchTree(BinarySearchTree &&rhs) : root{rhs.root}
+    {
+        rhs.root = nullptr;
+    }
+
+    ~BinarySearchTree()
+    {
+        makeEmpty();
+    }
+
+    BinarySearchTree &operator=(BinarySearchTree &&rhs)
+    {
+        std::swap(root, rhs.root);
+        return *this;
+    }
+
+    const Customer &findMin() const
+    {
+        if (isEmpty())
+            throw UnderflowException{};
+        return findMin(root)->element;
+    }
+
+    Customer findMax() const
+    {
+        if (isEmpty())
+            throw UnderflowException{};
+        return findMax(root);
+    }
+
+    Customer *contains(int x) const
+    {
+        return contains(x, root);
+    }
+
+    bool isEmpty() const
+    {
+        return root == nullptr;
+    }
+
+    void makeEmpty()
+    {
+        makeEmpty(root);
+    }
+
+    void insert(const Customer &x)
+    {
+        insert(x, root);
+    }
+
+    void remove(const Customer &x)
+    {
+        remove(x, root);
     }
 };
 

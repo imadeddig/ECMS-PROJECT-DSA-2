@@ -40,7 +40,7 @@ public:
     ~Company();
 
     // inserting a customer (additonal function) this is a whole new customer
-     void addCustomer(const string &name, const string &id, vector<int> ages, double amount, int day, int mouth, int year, string adress, int countryID, int regionID, int cityID, int districtID);
+      void addCustomer(const string &name, vector<int> ages, double amount, int day, int mouth, int year, string adress, string districtID);
     void setBillFile();
      bool comparedep(Department, Department);
  

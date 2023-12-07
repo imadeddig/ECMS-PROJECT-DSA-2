@@ -63,12 +63,22 @@ Company::Company()
     departmentsStored.push_back(a);
   }
 }
-void Company::addCustomer(const string &name, const string &id, vector<int> ages, double amount, int day, int mouth, int year, string adress, int countryID, int regionID, int cityID, int districtID)
+void Company::addCustomer(const string &name, vector<int> ages, double amount, int day, int mouth, int year, string adress, string districtID)
 {
-    Customer customerMax =countries[countryID].getCountryRegions()[regionID].getRegionCities()[cityID].getDistricts()[districtID].getCustomers()->findMax();
+  istringstream ss(districtID);
+  string part;
+  int numbers[4], i = 0;
+
+  while (getline(ss, part, '-'))
+  {
+    int number = stoi(part);
+    numbers[i] = number;
+    i++;
+  }
+    Customer customerMax =countries[numbers[0]].getCountryRegions()[numbers[1]].getRegionCities()[numbers[2]].getDistricts()[numbers[3]].getCustomers()->findMax();
     int newid=customerMax.getID()+1;
     Customer newCostumer(name,to_string(newid),ages,amount,day,mouth,year,adress) ;
-    countries[countryID].getCountryRegions()[regionID].getRegionCities()[cityID].getDistricts()[districtID].getCustomers()->insert(newCostumer);
+    countries[numbers[0]].getCountryRegions()[numbers[1]].getRegionCities()[numbers[2]].getDistricts()[numbers[3]].getCustomers()->insert(newCostumer);
 }
 
 void Company::setBillFile()

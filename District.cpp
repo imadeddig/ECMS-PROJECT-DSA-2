@@ -84,3 +84,30 @@ void District::getDayWeather(int &day, int &month, int &year)
 HashWeather District::getWeather()
 {
 }
+
+
+double District::OneDepPerf(int startYear = 0, int startMonth = 0, int endYear = 0, int endMonth = 0)
+{
+    
+return getcumulativeofallcust(customersTree->getroot(), startYear, startMonth, endYear, endMonth);
+}
+
+
+double District::getcumulativeofallcust(BinaryNode *t, int min = 0, int minmou = 0, int max = 0, int maxmouth = 0)
+{
+
+    if (t == nullptr)
+    {
+        return 0;
+    }
+    for (size_t i = t->element.hashyear(min); i < t->element.hashyear(max); i++)
+    {
+        for (size_t j = t->element.hashyear(minmou); j < t->element.hashyear(maxmouth); j++)
+        {
+            cd += t->element.getCustomerBills()[i][j].getTotalDifference();
+        }
+    }
+
+    return cd + getcumulativeofallcust(t->left) + getcumulativeofallcust(t->right);
+}
+

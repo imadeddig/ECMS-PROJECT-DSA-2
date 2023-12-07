@@ -24,6 +24,11 @@ class District
     BinarySearchTree* getCustomers(); // return a pointer to the root of a binary tree that contains all the customers in the district
     void getDayWeather(int& day, int& month,int&year);
     HashWeather getWeather();
+
+// new functions
+    double OneDepPerf(int startYear = 0,int startMonth = 0, int endYear = 0, int endMonth = 0);
+
+    double getcumulativeofallcust(BinaryNode *,int startYear = 0,int startMonth = 0, int endYear = 0, int endMonth = 0);
 };
 #endif
 

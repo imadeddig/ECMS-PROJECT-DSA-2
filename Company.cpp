@@ -212,10 +212,6 @@ void Company::storeNewDepartment(vector<Department> newdprtmnt)
   departmentsStored.push_back(newdprtmnt);
 }
 
-void Company::getDepartmentPerformance(int startYear, int endYear)
-{
-  
-}
 
 Customer Company::getWinnerCustomer()
 {
@@ -226,4 +222,43 @@ Customer Company::getWinnerCustomer()
 bool Company::comparedep(Department a, Department b)
 {
   return a.getBudget() > b.getBudget();
+}
+
+
+void Company::storeNewDepartment(vector<Department> newdprtmnt)
+{
+
+  departmentsStored.push_back(newdprtmnt);
+}
+
+void Company::getDepartmentPerformance(int startYear, int startMonth, int endYear, int endMonth)
+{
+  struct depart
+  {
+    string namedep;
+    string Iddep;
+    double performence = 0;
+  };
+
+  vector<depart> AllDepPer;
+
+  for (int i = 0; i < countries.size(); i++)
+  {
+    for (int j = 0; j < countries[i].getCountryRegions().size(); j++)
+    {
+      for (int c = 0; c < countries[i].getCountryRegions()[j].getRegionCities().size(); c++)
+      {
+        depart dep1;
+        dep1.namedep = countries[i].getCountryRegions()[j].getRegionCities()[c].getDepartment().getDepartmentName();
+        // id
+        for (size_t d = 0; d < countries[i].getCountryRegions()[j].getRegionCities()[c].getDistricts().size(); d++)
+        {
+          dep1.performence += countries[i].getCountryRegions()[j].getRegionCities()[c].getDistricts()[d].OneDepPerf(startYear, startMonth, endYear, endMonth);
+        }
+
+        AllDepPer.push_back(dep1);
+        dep1.performence = 0;
+      }
+    }
+  }
 }

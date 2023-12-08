@@ -231,12 +231,12 @@ void Company::storeNewDepartment(vector<Department> newdprtmnt)
   departmentsStored.push_back(newdprtmnt);
 }
 
+
 void Company::getDepartmentPerformance(int startYear, int startMonth, int endYear, int endMonth)
 {
   struct depart
   {
     string namedep;
-    string Iddep;
     double performence = 0;
   };
 
@@ -261,4 +261,12 @@ void Company::getDepartmentPerformance(int startYear, int startMonth, int endYea
       }
     }
   }
+
+  // print the vector
+
+  for (int i = 0; i < AllDepPer.size(); i++)
+  {
+    cout << "Departement Name : " << AllDepPer[i].namedep << ", its performence : " << AllDepPer[i].performence << " . " << endl;
+  }
+  
 }

@@ -88,10 +88,9 @@ HashWeather District::getWeather()
 
 double District::OneDepPerf(int startYear = 0, int startMonth = 0, int endYear = 0, int endMonth = 0)
 {
-    
-return getcumulativeofallcust(customersTree->getroot(), startYear, startMonth, endYear, endMonth);
-}
 
+    return getcumulativeofallcust(customersTree->getroot(), startYear, startMonth, endYear, endMonth);
+}
 
 double District::getcumulativeofallcust(BinaryNode *t, int min = 0, int minmou = 0, int max = 0, int maxmouth = 0)
 {
@@ -100,14 +99,45 @@ double District::getcumulativeofallcust(BinaryNode *t, int min = 0, int minmou =
     {
         return 0;
     }
-    for (size_t i = t->element.hashyear(min); i < t->element.hashyear(max); i++)
+
+    for (size_t i = t->element.hashyear(min); i <= t->element.hashyear(max); i++)
     {
-        for (size_t j = t->element.hashyear(minmou); j < t->element.hashyear(maxmouth); j++)
+
+        if (t->element.hashyear(min) == t->element.hashyear(max)) // the same year
         {
-            cd += t->element.getCustomerBills()[i][j].getTotalDifference();
+            for (size_t j = t->element.hashyear(minmou); j <= t->element.hashyear(maxmouth); j++)
+            {
+                cd += t->element.getCustomerBills()[i][j].getTotalDifference();
+            }
+        }
+
+        else // t->element.hashyear(min) < t->element.hashyear(max) like 2023 to 2024
+        {
+            if (t->element.hashyear(min) == i)
+            {
+                for (size_t d = t->element.hashmouth(minmou); d < 12; d++)
+                {
+                    cd += t->element.getCustomerBills()[i][d].getTotalDifference();
+                }
+            }
+
+            else if (t->element.hashyear(max) == i)
+            {
+                for (size_t f = 0; f <= t->element.hashyear(max); f++)
+                {
+                    cd += t->element.getCustomerBills()[i][f].getTotalDifference();
+                }
+            }
+
+            else //  (t->element.hashyear(min) != i && t->element.hashyear(max) != i)
+            {
+                for (size_t e = 0; e < 12; e++)
+                {
+                    cd += t->element.getCustomerBills()[i][e].getTotalDifference();
+                }
+            }
         }
     }
 
     return cd + getcumulativeofallcust(t->left) + getcumulativeofallcust(t->right);
 }
-

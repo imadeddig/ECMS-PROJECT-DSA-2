@@ -16,6 +16,7 @@ private:
 public:
     Department();
     Department(string,string,float,float);
+    string getDepartmentid();
     void updateBudget(float);
     int getBudget();
     float getperformance();

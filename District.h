@@ -27,7 +27,7 @@ class District
     HashWeather getWeather();
 
 // new functions
-    double OneDepPerf(int startYear = 0,int startMonth = 0, int endYear = 0, int endMonth = 0);
+    double OneDestrictPerf(int startYear = 0,int startMonth = 0, int endYear = 0, int endMonth = 0);
 
     double getcumulativeofallcust(BinaryNode *,int startYear = 0,int startMonth = 0, int endYear = 0, int endMonth = 0);
 };

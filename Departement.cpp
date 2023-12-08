@@ -21,6 +21,10 @@ Department::Department(string name="", string id="", float bud=0, float spent=0)
     
 }
 
+string Department::getDepartmentid()
+{
+  return Departmentid;
+}
 
 
 void Department::updateBudget(float percentage)

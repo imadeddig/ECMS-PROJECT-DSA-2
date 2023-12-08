@@ -21,6 +21,12 @@ private:
     vector<vector<Department>> departmentsStored;
     vector<Country> countries;
     Customer winner;
+    struct depart
+    {
+        string namedep;
+        string IDdep;
+        double performence = 0;
+    };
 
 public:
     Company();
@@ -41,8 +47,9 @@ public:
 
     // inserting a customer (additonal function) this is a whole new customer
       void addCustomer(const string &name, vector<int> ages, double amount, int day, int mouth, int year, string adress, string districtID);
-    void setBillFile();
-     bool comparedep(Department, Department);
+      void setBillFile();
+      bool comparedep(Department, Department);
+      bool compardep2(depart, depart);
  
 };
 #endif

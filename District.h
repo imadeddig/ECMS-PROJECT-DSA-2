@@ -15,6 +15,7 @@ class District
     int numOfCustomers=0;
     BinarySearchTree *customersTree; // customers that are in that region
     HashWeather  climate;
+    double cd=0;
     //for ids, there should be a counter globally in order to set the id
 
     public:

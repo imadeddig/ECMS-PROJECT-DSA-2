@@ -231,14 +231,8 @@ void Company::storeNewDepartment(vector<Department> newdprtmnt)
   departmentsStored.push_back(newdprtmnt);
 }
 
-
 void Company::getDepartmentPerformance(int startYear, int startMonth, int endYear, int endMonth)
 {
-  struct depart
-  {
-    string namedep;
-    double performence = 0;
-  };
 
   vector<depart> AllDepPer;
 
@@ -250,23 +244,31 @@ void Company::getDepartmentPerformance(int startYear, int startMonth, int endYea
       {
         depart dep1;
         dep1.namedep = countries[i].getCountryRegions()[j].getRegionCities()[c].getDepartment().getDepartmentName();
-        // id
+        dep1.IDdep = countries[i].getCountryRegions()[j].getRegionCities()[c].getDepartment().getDepartmentid();
+
         for (size_t d = 0; d < countries[i].getCountryRegions()[j].getRegionCities()[c].getDistricts().size(); d++)
         {
           dep1.performence += countries[i].getCountryRegions()[j].getRegionCities()[c].getDistricts()[d].OneDestrictPerf(startYear, startMonth, endYear, endMonth);
         }
-
         AllDepPer.push_back(dep1);
         dep1.performence = 0;
       }
     }
   }
 
+  // sort the vector depends on the performence
+
+  sort(AllDepPer.begin(), AllDepPer.end(), compardep2);
+
   // print the vector
 
   for (int i = 0; i < AllDepPer.size(); i++)
   {
-    cout << "Departement Name : " << AllDepPer[i].namedep << ", its performence : " << AllDepPer[i].performence << " . " << endl;
+    cout << "Departement ID : " << AllDepPer[i].IDdep << ", Departement Name : " << AllDepPer[i].namedep << ", its performence : " << AllDepPer[i].performence << " . " << endl;
   }
-  
+}
+
+bool Company::compardep2(depart a, depart b)
+{
+  return a.performence > b.performence;
 }

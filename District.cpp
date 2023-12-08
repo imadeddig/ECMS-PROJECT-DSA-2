@@ -86,7 +86,7 @@ HashWeather District::getWeather()
 }
 
 
-double District::OneDepPerf(int startYear = 0, int startMonth = 0, int endYear = 0, int endMonth = 0)
+double District::OneDestrictPerf(int startYear = 0, int startMonth = 0, int endYear = 0, int endMonth = 0)
 {
 
     return getcumulativeofallcust(customersTree->getroot(), startYear, startMonth, endYear, endMonth);

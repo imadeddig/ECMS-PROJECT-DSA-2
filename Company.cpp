@@ -253,7 +253,7 @@ void Company::getDepartmentPerformance(int startYear, int startMonth, int endYea
         // id
         for (size_t d = 0; d < countries[i].getCountryRegions()[j].getRegionCities()[c].getDistricts().size(); d++)
         {
-          dep1.performence += countries[i].getCountryRegions()[j].getRegionCities()[c].getDistricts()[d].OneDepPerf(startYear, startMonth, endYear, endMonth);
+          dep1.performence += countries[i].getCountryRegions()[j].getRegionCities()[c].getDistricts()[d].OneDestrictPerf(startYear, startMonth, endYear, endMonth);
         }
 
         AllDepPer.push_back(dep1);

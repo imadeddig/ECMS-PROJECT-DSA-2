@@ -20,7 +20,7 @@ private:
     // saving the sorted departments in a hash table
     vector<vector<Department>> departmentsStored;
     vector<Country> countries;
-    Customer winner;
+    Customer* winner;
     struct depart
     {
         string namedep;

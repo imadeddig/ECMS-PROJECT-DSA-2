@@ -83,9 +83,20 @@ void Company::addCustomer(const string &name, vector<int> ages, double amount, i
 
 void Company::setBillFile()
 {
+            auto now = std::chrono::system_clock::now();
+
+  std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
+
+  std::tm *timeInfo = std::localtime(&currentTime);
     //i have a new file fih customers last month bills, lazem ndkhel jded
     //lzm i get this date month!
-    fstream monthlyBill;
+
+
+    //function can be only called first of the month
+    if(timeInfo->tm_mday==1)
+   { fstream monthlyBill;
+    //we'll be comparing this to that
+    Customer* winTemp = nullptr;
     monthlyBill.open("monthlybill.txt");
     string line;
     getline(monthlyBill,line);
@@ -117,24 +128,34 @@ void Company::setBillFile()
 
           Customer* a = customerTreeRoot->contains(stoi(UniquePart));
 
-          auto now = std::chrono::system_clock::now();
 
-  std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
 
-  std::tm *timeInfo = std::localtime(&currentTime);
+
   int monthNow = timeInfo->tm_mon+1;
   int yearNow = timeInfo->tm_year;
 
   a->getCustomerBills()[yearNow-2020][monthNow] = billToBeInserted;
-         
+            //we update the customer's cmltv thingie, the new one
+          a->updateAmount(stod(injectionAmount));
+
+          if(a->getComulativeAmount()>winTemp->getComulativeAmount() || !winTemp)
+          {
+            //idk if that is possible
+            winTemp = a;
+          }
+         // i still need to update customer cumulative thingie + keep track of winner
           
           
     }
     monthlyBill.close();
+}
+else
+{
+  cout<<"mazal l7al hh";
+}
     
 
 }
-
 
 
 vector<Department> Company::orderAlldepartement()
@@ -271,4 +292,9 @@ void Company::getDepartmentPerformance(int startYear, int startMonth, int endYea
 bool Company::compardep2(depart a, depart b)
 {
   return a.performence > b.performence;
+}
+
+Customer* Company::getWinnerCustomer()
+{
+  return winner;
 }

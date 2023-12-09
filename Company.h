@@ -36,8 +36,9 @@ public:
     void storeNewDepartment(vector<Department>);
     // get performance of departments
     void getDepartmentPerformance(int startYear = 0, int endYear = 0);
-    // return customer with most injection
-    Customer getWinnerCustomer();
+           // return customer with most injection
+    Customer* getWinnerCustomer();
+    void setWinner(Customer*);
     // printing customers bills based on user choice
     void printBillCompany(int countryID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
     void printBillCompany(int regionID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);

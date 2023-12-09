@@ -40,10 +40,10 @@ public:
     Customer* getWinnerCustomer();
     void setWinner(Customer*);
     // printing customers bills based on user choice
-    void printBillCompany(int countryID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
-    void printBillCompany(int regionID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
-    void printBillCompany(int cityID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
-    void printBillCompany(int ditrictID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
+    void printBillCountry(string countryID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
+    void printBillRegion(string regionID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
+    void printBillCity(string cityID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
+    void printBillDistrict(string ditrictID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
     ~Company();
 
     // inserting a customer (additonal function) this is a whole new customer
@@ -52,6 +52,7 @@ public:
       bool comparedep(Department, Department);
       bool compardep2(depart, depart);
      //printing one customer's bill, should it be by id? totally hh
-    void printBillForOneCustomer(string customerID="", int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
+   void inOrderTraversal(BinaryNode *root, BinarySearchTree*,int yearStart, int yearEnd, int monthStart, int monthEnd);
+    void printBillForOneCustomer(BinarySearchTree *root, int idcust, int yearStart=0, int yearEnd=0, int monthStart=0, int monthEnd=0);
 };
 #endif

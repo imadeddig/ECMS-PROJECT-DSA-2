@@ -51,6 +51,7 @@ public:
       void setBillFile();
       bool comparedep(Department, Department);
       bool compardep2(depart, depart);
- 
+     //printing one customer's bill, should it be by id? totally hh
+    void printBillForOneCustomer(string customerID="", int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
 };
 #endif

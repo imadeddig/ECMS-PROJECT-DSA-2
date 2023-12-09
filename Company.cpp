@@ -300,7 +300,8 @@ Customer* Company::getWinnerCustomer()
 }
 
 
-void Company::printBillForOneCustomer(string givenID, int yearStart, int yearEnd, int monthStart, int monthEnd)
+
+void Company::printBillForOneCustomer(BinarySearchTree *root, int idcust, int yearStart, int yearEnd, int monthStart, int monthEnd)
 {
   auto now = std::chrono::system_clock::now();
 
@@ -310,72 +311,61 @@ void Company::printBillForOneCustomer(string givenID, int yearStart, int yearEnd
   int todayMonth = timeInfo->tm_mon + 1;    // Adding 1 to make it human-readable
   int todayYear = timeInfo->tm_year + 1900; // Adding 1900 to get the actual year
 
-  string customerID = givenID;
+ 
 
   // now neqsm my id for fast access :
 
-  string countryPart = customerID.substr(0, customerID.find_first_of("-"));
-  customerID = customerID.substr(customerID.find_first_of("-") + 1);
-  string RegionPart = customerID.substr(0, customerID.find_first_of("-"));
-  customerID = customerID.substr(customerID.find_first_of("-") + 1);
-  string CityPart = customerID.substr(0, customerID.find_first_of("-"));
-  customerID = customerID.substr(customerID.find_first_of("-") + 1);
-  string DistrictPart = customerID.substr(0, customerID.find_first_of("-"));
-  customerID = customerID.substr(customerID.find_first_of("-") + 1);
-  string UniquePart = customerID.substr(0, customerID.find_first_of("-"));
-  customerID = customerID.substr(customerID.find_first_of("-") + 1);
-
-  BinarySearchTree *customerTreeRoot = countries[stoi(countryPart)].getCountryRegions()[stoi(RegionPart)].getRegionCities()[stoi(CityPart)].getDistricts()[stoi(DistrictPart)].getCustomers();
+  BinarySearchTree *customerTreeRoot = root;
   // remember that a customer should exist, donc do checkings
-  Customer *a = customerTreeRoot->contains(stoi(UniquePart));
+  Customer *a = customerTreeRoot->contains(idcust);
 
   // remember rak triyeh tmed choix to the customer in the main, i.e nta tqolo wsh hab ydkhl or wsh hab ychof, tsma yk 3amar 3la qisek
   if (yearStart != 0 && yearEnd == 0 && monthEnd == 0 && monthStart == 0)
   {
     // print based on a specific year
     if (yearStart == todayYear)
-      for (int i = 0; i < todayMonth - 1; i++)
+      for (int i = 0; i <  todayMonth ; i++)
       {
-        a->getCustomerBills()[yearStart][i].print();
+        a->getCustomerBills()[a->hashyear(yearStart)][i].print();
       }
     else
     {
       for (int i = 0; i < 12; i++)
       {
-        a->getCustomerBills()[yearStart][i].print();
+        a->getCustomerBills()[a->hashyear(yearStart)][i].print();
       }
     }
   }
-  else if (monthStart != 0 && monthEnd == 0)
+  else if ((monthStart-1 )!= 0 && (monthEnd-1) == 0)
   {
     // print for a specific month
     // if year given
-    if (yearStart != 0)
+    if (a->hashyear( yearStart) != 0)
     {
       // make sure that fel main ndiro logical checkings
-      a->getCustomerBills()[yearStart][monthStart].print();
+      a->getCustomerBills()[a->hashyear(yearStart)][monthStart-1].print();
     }
     else
     {
-      a->getCustomerBills()[todayYear][monthStart].print();
+      a->getCustomerBills()[a->hashyear(todayYear)][monthStart-1].print();
     }
   }
-  else if (monthStart != 0 && monthEnd != 0 && yearStart != 0)
+  else if ((monthStart - 1) != 0 && (monthEnd - 1) != 0 && a->hashyear(yearStart) != 0)
   {
     // a period was given
     // check ida kayn an interval for year
-    if (!yearEnd)
+    if (!a->hashyear(yearEnd))
     {
       // mkch
       for (int i = monthStart - 1; i < monthEnd - 1; i++)
       {
-        a->getCustomerBills()[yearStart][i];
+        a->getCustomerBills()[a->hashyear(yearStart)][i];
       }
     }
     else
     {
       // interval given..
-      for (int i = yearStart - 1; i < yearEnd - 1; i++)
+      for (int i = a->hashyear(yearStart) ; i < a->hashyear(yearEnd) ; i++)
       {
         for (int j = monthStart - 1; i < monthEnd - 1; j++)
         {
@@ -384,6 +374,79 @@ void Company::printBillForOneCustomer(string givenID, int yearStart, int yearEnd
       }
     }
   }
-  //what we could do instead, f default args n7ato current month, will be discussed with the girls
+  // what we could do instead, f default args n7ato current month, will be discussed with the girls
 }
 
+void Company::inOrderTraversal(BinaryNode *root, BinarySearchTree *rot, int yearStart, int yearEnd, int monthStart, int monthEnd)
+{
+  if (root == nullptr)
+  {
+    return;
+  }
+
+  inOrderTraversal(root->left, rot,yearStart, yearEnd, monthStart, monthEnd);
+
+  printBillForOneCustomer(rot, root->element.getID(), yearStart, yearEnd, monthStart, monthEnd);
+
+  inOrderTraversal(root->right,rot,yearStart, yearEnd, monthStart, monthEnd);
+}
+
+void Company::printBillCountry(string countryID, int yearStart, int yearEnd, int monthStart, int monthEnd)
+{
+  string countryPart = countryID.substr(0, countryID.find_first_of("-"));
+  countryID = countryID.substr(countryID.find_first_of("-") + 1);
+  Country countr = countries[stoi(countryPart)];
+
+  for (size_t i = 0; i <countr.getCountryRegions().size(); i++)
+  {
+    printBillCity(countr.getCountryRegions().at(i).getRegionID(), yearStart, yearEnd, monthStart, monthEnd);
+  }
+}
+
+void Company::printBillRegion(string regionID, int yearStart, int yearEnd, int monthStart, int monthEnd)
+{
+  string countryPart = regionID.substr(0, regionID.find_first_of("-"));
+  regionID = regionID.substr(regionID.find_first_of("-") + 1);
+  string RegionPart = regionID.substr(0, regionID.find_first_of("-"));
+  regionID = regionID.substr(regionID.find_first_of("-") + 1);
+  Region region = countries[stoi(countryPart)].getCountryRegions()[stoi(RegionPart)];
+
+for (size_t i = 0; i < region.getRegionCities().size() ; i++)
+{
+  printBillCity(region.getRegionCities().at(i).getCityID(), yearStart, yearEnd, monthStart, monthEnd);
+}
+
+}
+
+void Company::printBillCity(string cityID, int yearStart, int yearEnd, int monthStart, int monthEnd)
+{
+    string countryPart = cityID.substr(0, cityID.find_first_of("-"));
+    cityID = cityID.substr(cityID.find_first_of("-") + 1);
+    string RegionPart = cityID.substr(0, cityID.find_first_of("-"));
+    cityID = cityID.substr(cityID.find_first_of("-") + 1);
+    string CityPart = cityID.substr(0, cityID.find_first_of("-"));
+    cityID = cityID.substr(cityID.find_first_of("-") + 1);
+    City cit = countries[stoi(countryPart)].getCountryRegions()[stoi(RegionPart)].getRegionCities()[stoi(CityPart)];
+
+    for (size_t i = 0; i < cit.getDistricts().size(); i++)
+    {
+      printBillDistrict(cit.getDistricts().at(i).getDistrictID(), yearStart, yearEnd, monthStart, monthEnd);
+    }
+    
+
+  }
+
+  void Company::printBillDistrict(string ditrictID, int yearStart, int yearEnd, int monthStart, int monthEnd)
+  {
+    string countryPart = ditrictID.substr(0, ditrictID.find_first_of("-"));
+    ditrictID = ditrictID.substr(ditrictID.find_first_of("-") + 1);
+    string RegionPart = ditrictID.substr(0, ditrictID.find_first_of("-"));
+    ditrictID = ditrictID.substr(ditrictID.find_first_of("-") + 1);
+    string CityPart = ditrictID.substr(0, ditrictID.find_first_of("-"));
+    ditrictID = ditrictID.substr(ditrictID.find_first_of("-") + 1);
+    string DistrictPart = ditrictID.substr(0, ditrictID.find_first_of("-"));
+    ditrictID = ditrictID.substr(ditrictID.find_first_of("-") + 1);
+    // this part is for separting the regionId ,cityId,districtId,countryId and convert them to integers
+
+    inOrderTraversal(countries[stoi(countryPart)].getCountryRegions()[stoi(RegionPart)].getRegionCities()[stoi(CityPart)].getDistricts()[stoi(DistrictPart)].getCustomers()->getroot(), countries[stoi(countryPart)].getCountryRegions()[stoi(RegionPart)].getRegionCities()[stoi(CityPart)].getDistricts()[stoi(DistrictPart)].getCustomers(), yearStart, yearEnd, monthStart, monthEnd); // print the bills for a period of a customer
+  }

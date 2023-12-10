@@ -1,0 +1,6 @@
+idregion,nameregion
+1-1,Algiers
+1-2,Oran
+1-3,Constantine
+1-4,Tizi Ouzou
+1-5,Béjaïa

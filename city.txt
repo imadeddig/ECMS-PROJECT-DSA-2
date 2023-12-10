@@ -1,0 +1,49 @@
+cityID, cityName
+1-5-1,Adekar
+1-5-2,Akbou
+1-5-3,Amizour
+1-5-4,Aokas
+1-5-5,Barbacha
+1-5-6,Béjaïa
+1-5-7,Béni Maouche
+1-5-8,Chemini
+1-5-9,Darguina
+1-5-10,El Kseur
+1-3-1,Constantine
+1-3-2,El Khroub
+1-3-3,Aïn Abid
+1-3-4,Zighoud Youcef
+1-3-5,Hamma Bouziane  
+1-3-6,Ibn Ziad
+1-4-1,Aïn El Hammam
+1-4-2,Azazga
+1-4-3,Azzefoun
+1-4-4,Béni Douala
+1-4-5,Béni Yenni
+1-4-6,Boghni
+1-4-7,Bouzeguène
+1-4-8,Draâ Ben Khedda
+1-4-9,Draâ El Mizan
+1-4-10,Iferhounène
+1-1-1,Zeralda
+1-1-2,Chéraga
+1-1-3,Draria
+1-1-4,Bir Mourad Rais
+1-1-5,Birtouta
+1-1-6,Bouzareah
+1-1-7,Bab El Oued
+1-1-8,Sidi M'hamed
+1-1-9,Hussein Dey
+1-1-10,EL Harrach
+1-1-11,Baraki
+1-1-12,Dar El Beida
+1-1-13,Rouiba
+1-2-1,Ain El Turk
+1-2-2,Azrew
+1-2-3,Bethioua
+1-2-4,Bir El Djir
+1-2-5,Boutlélis
+1-2-6,Es Sénia
+1-2-7,Gdyel
+1-2-8,Oued Tlélat
+1-2-9,Oran

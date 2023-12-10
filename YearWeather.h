@@ -22,8 +22,9 @@ struct DayWeather // start of the DayWeather struct
     double maxTemp;
     double minTemp;
     int sunnyHours;
+    string IdDistrict;
     TypeDay weather; // to indicate whether the day is sunny,rainy...
-    DayWeather(const int &DN, const int &MN, const double &MT, const double &MIT, const int &SH, const string &W) : maxTemp(MT), minTemp(MIT)
+    DayWeather(const int &DN, const int &MN, const double &MT, const double &MIT, const int &SH, const string &W, const string &ID) : maxTemp(MT), minTemp(MIT), IdDistrict(ID)
     {
         dayNum = (DN > 0 && DN < 32) ? DN : 0;
         monthNum = (MN > 0 && MN < 13) ? MN : 0;
@@ -62,11 +63,6 @@ public:
 
     class HashWeather
 {
-
-
-
-
-
 public:
     explicit HashWeather();
     bool isFull();                 // chech if the size of the vector equal to the current size

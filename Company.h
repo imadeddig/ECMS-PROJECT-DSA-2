@@ -44,6 +44,7 @@ public:
     void printBillRegion(string regionID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
     void printBillCity(string cityID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
     void printBillDistrict(string ditrictID, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
+void callprint(string id, int yearStart = 0, int yearEnd = 0, int monthStart = 0, int monthEnd = 0);
     ~Company();
 
     // inserting a customer (additonal function) this is a whole new customer

@@ -450,3 +450,45 @@ void Company::printBillCity(string cityID, int yearStart, int yearEnd, int month
 
     inOrderTraversal(countries[stoi(countryPart)].getCountryRegions()[stoi(RegionPart)].getRegionCities()[stoi(CityPart)].getDistricts()[stoi(DistrictPart)].getCustomers()->getroot(), countries[stoi(countryPart)].getCountryRegions()[stoi(RegionPart)].getRegionCities()[stoi(CityPart)].getDistricts()[stoi(DistrictPart)].getCustomers(), yearStart, yearEnd, monthStart, monthEnd); // print the bills for a period of a customer
   }
+
+
+
+
+void Company::callprint(string id, int yearStart, int yearEnd, int monthStart, int monthEnd)
+{
+  
+  size_t count =0;
+  
+  for (size_t i = 0; i <id.length(); i++)
+  {
+    if ( &id[i] == "-")
+    {
+      count++;
+    }
+    
+  }
+  
+
+  switch (count)
+  {
+  case 0:
+    printbillcountry( id,  yearStart,  yearEnd,  monthStart,  monthEnd);
+
+        break;
+  case 1:
+   printbillregion( id,  yearStart,  yearEnd,  monthStart,  monthEnd);
+    break;
+    case 2 :
+    printBillCity( id,  yearStart,  yearEnd,  monthStart,  monthEnd);
+    break;
+    case 3:
+    printBillDistrict( id,  yearStart,  yearEnd,  monthStart,  monthEnd);
+    break;
+    case 4:
+    printBillForOneCustomer(id, yearStart, yearEnd, monthStart, monthEnd);
+    break;
+
+        default :cout<<"not valid";
+         break;
+  } 
+}

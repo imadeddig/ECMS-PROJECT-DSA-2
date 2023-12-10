@@ -35,7 +35,7 @@ public:
     // storing the new stored department into the all sorted departmentf of the last year
     void storeNewDepartment(vector<Department>);
     // get performance of departments
-    void getDepartmentPerformance(int startYear = 0, int endYear = 0);
+    void getDepartmentPerformance(int startYear = 0, int endYear = 0,int,int);
            // return customer with most injection
     Customer* getWinnerCustomer();
     void setWinner(Customer*);
@@ -54,6 +54,8 @@ void callprint(string id, int yearStart = 0, int yearEnd = 0, int monthStart = 0
       bool compardep2(depart, depart);
      //printing one customer's bill, should it be by id? totally hh
    void inOrderTraversal(BinaryNode *root, BinarySearchTree*,int yearStart, int yearEnd, int monthStart, int monthEnd);
-    void printBillForOneCustomer(BinarySearchTree *root, int idcust, int yearStart=0, int yearEnd=0, int monthStart=0, int monthEnd=0);
+    void printBillForOneCustome(BinarySearchTree *root, int idcust, int yearStart=0, int yearEnd=0, int monthStart=0, int monthEnd=0);
+  void  printBillForOneCustomer(string givenID, int yearStart, int yearEnd, int monthStart, int monthEnd);
+    
 };
 #endif

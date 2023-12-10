@@ -6,8 +6,8 @@ District::District(const string &a, const string &b)
 {
     districtID = a;
     districtName = b;
+
     fstream customerFile;
-    HashWeather();
     customerFile.open("customers.txt");
     string line;
     getline(customerFile, line);
@@ -51,6 +51,53 @@ District::District(const string &a, const string &b)
         }
     }
     customerFile.close();
+
+    HashWeather();
+    fstream weatherFile;
+    weatherFile.open("weathers.txt");
+    string line;
+    getline(weatherFile, line);
+    while (getline(weatherFile, line))
+
+    {
+        string Id = line.substr(0, line.find_first_of(","));
+        line = line.substr(line.find_first_of(",") + 1);
+        string year = line.substr(0, line.find_first_of(","));
+        line = line.substr(line.find_first_of(",") + 1);
+        int index = climate.hashFunction(stoi(year));
+        if (climate.yearsweather[index].yearNum == 0)
+        {
+            climate.yearsweather[index].yearNum = stoi(year);
+        }
+        string month = line.substr(0, line.find_first_of(","));
+        line = line.substr(line.find_first_of(",") + 1);
+        string day = line.substr(0, line.find_first_of(","));
+        line = line.substr(line.find_first_of(",") + 1);
+        string maxtemp = line.substr(0, line.find_first_of(","));
+        line = line.substr(line.find_first_of(",") + 1);
+        string mintemp = line.substr(0, line.find_first_of(","));
+        line = line.substr(line.find_first_of(",") + 1);
+        string sunnyhours = line.substr(0, line.find_first_of(","));
+        line = line.substr(line.find_first_of(",") + 1);
+        string daytype = line.substr(0, line.find_first_of(","));
+        line = line.substr(line.find_first_of(",") + 1);
+
+        DayWeather dayweather(stoi(month), stoi(day), stod(maxtemp), stod(mintemp), stoi(sunnyhours), daytype, Id);
+        if(Id==getDistrictID()) 
+        {
+            climate.yearsweather[index].days.push_back(dayweather);
+        }
+
+        if (climate.isFull())
+
+        {
+            YearWeather a;
+            a.yearNum = 0;
+            climate.yearsweather.push_back(a);
+        }
+    }
+
+    weatherFile.close();
 }
 
 string District::getDistrictID()

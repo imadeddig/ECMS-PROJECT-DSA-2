@@ -1,0 +1,142 @@
+districtID,districtName
+1-1-1-1,Staouéli
+1-1-2-2,Souidania
+1-1-1-3,Rahmania
+1-1-1-4,Mahelma
+1-1-1-5,SidiAbdellah
+1-1-2-1,Hammamet
+1-1-2-2,Dély
+1-1-2-3,Ibrahim
+1-1-2-4,Aïn Bénian
+1-1-2-5,Ouled Fayet
+1-1-3-1,Baba Hassen
+1-1-3-2,Douéra
+1-1-3-3,Khraïcia
+1-1-3-4,El Achour
+1-1-4-1,Hydra
+1-1-4-2,Saoula
+1-1-4-3,Birkhadem
+1-1-4-4,Djasr Kasentina
+1-1-5-1,Ouled Chebel
+1-1-5-2,Tessala El Merdja
+1-1-6-1,Béni Messous
+1-1-6-2,Ben Aknoun
+1-1-6-3,El Biar
+1-1-7-1,Casbah
+1-1-7-2,Bologhine
+1-1-7-3,Oued Koriche
+1-1-7-4,Raïs Hamidou
+1-1-8-1,El Madania
+1-1-8-2,El Mouradia
+1-1-8-3,Alger Centre
+1-1-9-1,Kouba
+1-1-9-2,El Magharia
+1-1-9-3,Belouizdad
+1-1-10-1,Oued Smar
+1-1-10-2,Bourouba
+1-1-10-3,Bachdjerrah
+1-1-11-1-1,Les Eucalyptus
+1-1-11-1-2,Sidi Moussa
+1-1-12-1,Bab Ezzouar
+1-1-12-2,Aïn Taya
+1-1-13-1,Bab Ezzouar
+1-1-13-2,Aïn Taya
+1-1-13-3,El Marsa
+1-1-13-4,Bordj El Bahri
+1-1-13-5,Bordj El Kiffan
+1-1-14-1,Rouiba
+1-1-14-2,Reghaia
+1-1-14-3,H'raoua
+1-2-1-1,Mers El Kébir
+1-2-1-2,Bousfer
+1-2-1-3,El Ançor
+1-2-1-1,Sidi 
+1-2-1-2,Ben Yebka
+1-2-2-1,Mers ByaEl Hadjadj
+1-2-2-2, Aïn bya
+1-2-3-1,El Kerma
+1-2-3-2,Sidi Chami
+1-2-4-1,Hassi Bounif
+1-2-4-2,Hassi Ben Okba
+1-2-5-1,Aïn El Kerma
+1-2-5-2,Misserghin
+1-2-6-1,El Braya
+1-2-6-2,Boufatis
+1-2-6-3,Tafraoui
+1-2-7-1,Hassi Mefsoukh
+1-2-7-2,Ben Freha
+1-3-2-1,Adekar
+1-3-2-2,Taourirt Ighil
+1-3-2-3,Beni Ksila
+1-3-3-1,Akbou
+1-3-3-2,Chelata
+1-3-3-3,Ighram
+1-3-3-3,Tamokra
+1-3-4-1,Amizour
+1-3-4-2,Beni Djellil
+1-3-4-3,Semaoune
+1-3-4-4,Feraoun
+1-3-5-1,Aokas
+1-3-5-2,Tizi N'Berber
+1-3-6-1,Barbacha
+1-3-6-2,Kendira
+1-3-7-1,Béjaïa
+1-3-7-2,Oued Ghir
+1-3-8-1,Beni Maouche
+1-3-9-1,Chemini
+1-3-9-2,Tibane
+1-3-9-3,Souk-Oufella
+1-3-9-4,Akfadou
+1-3-10-1,Darguina
+1-3-10-2,Aït Smaïl
+1-3-10-3,Taskriout
+1-1-13-1,Rouiba
+1-1-13-2,Reghaia
+1-1-13-3,H'raoua
+1-3-1-1,Constantine
+1-3-2-1,El Khroub
+1-3-2-2,Ain Smara
+1-3-2-3,Ouled Rahmoune
+1-3-3-1,Ain Abid
+1-3-3-2,Ibn Badis
+1-3-4-1,Zighoud Youcef
+1-3-4-2,Beni Hamiden
+1-3-5-1,Hamma Bouziane
+1-3-5-2,Didouche Mourad
+1-3-6-1,Ibn Ziad
+1-3-6-2,Messaoud Boudjeriou
+1-4-1-1,Abi Youcef
+1-4-1-2,Aïn El Hammam
+1-4-1-3,Aït Yahia
+1-4-1-4,Akbil
+1-4-2-1,Azazga
+1-4-2-2,Freha
+1-4-2-3,Yakouren
+1-4-2-4,Zekri
+1-4-3-1,zekri
+1-4-4-1,Aït Mahmoud
+1-4-4-2,Béni-Aïssi
+1-4-4-3,Beni Douala
+1-4-4-4,Beni Zmenzer
+1-4-5-1,Beni Yenni
+1-4-5-2,Iboudraren
+1-4-5-3,Yattafène
+1-4-6-1,Assi Youcef
+1-4-6-2,Boghni
+1-4-6-3,Bounouh
+1-4-6-4,Zekri
+1-4-7-1,Beni-Zekki
+1-4-7-2,Bouzeguene
+1-4-7-3,Idjeur
+1-4-7-4,Illoula Oumalou
+1-4-8-1,Draâ Ben Khedda
+1-4-8-2,Sidi Nâamane
+1-4-8-3,Tadmaït
+1-4-8-4,Tirmitine
+1-4-9-1,Aïn Zaouia
+1-4-9-2,Aït Yahia Moussa
+1-4-9-3,Draâ El Mizan
+1-4-9-4,Frikat
+1-4-10-1,Iferhounène
+1-4-10-2,Illilten
+1-4-10-3,Imsouhal

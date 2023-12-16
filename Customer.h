@@ -1,8 +1,3 @@
-#ifndef CUSTOMER_H
-#define CUSTOMER_H
-#include <iostream>
-#include "Region.h"
-#include "District.h"
 #include <string>
 #include <vector>
 #include "Bill.h"
@@ -29,7 +24,7 @@ private:
     } date_regist;
 
 public:
-  Customer();
+    Customer();
     Customer(const string &, const string &, vector<int>, double, int, int, int, string);
     // getters function
     // will transforme the string to integer and return just the last part
@@ -60,5 +55,3 @@ public:
 
     void print();
 };
-
-#endif

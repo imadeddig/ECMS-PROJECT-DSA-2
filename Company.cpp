@@ -1,3 +1,4 @@
+
 #include "Company.h"
 #include "District.h"
 #include "ctime"
@@ -6,14 +7,14 @@
 #include "BinarySearchTree.h"
 #include "fstream"
 #include "Country.h"
-#include<sstream>
-
+#include"sstream"
+using namespace std;
 
 Company::Company()
 {
 
   ifstream countrie;
-  countrie.open("country.txt");
+  countrie.open("countrie.text");
   if (!countrie)
   {
     cerr << "File could not be open" << endl;
@@ -65,6 +66,10 @@ Company::Company()
     departmentsStored.push_back(a);
   }
 }
+
+
+
+
 void Company::addCustomer(const string &name, vector<int> ages, double amount, int day, int mouth, int year, string adress, string districtID)
 {
   istringstream ss(districtID);
@@ -85,20 +90,9 @@ void Company::addCustomer(const string &name, vector<int> ages, double amount, i
 
 void Company::setBillFile()
 {
-            auto now = std::chrono::system_clock::now();
-
-  std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
-
-  std::tm *timeInfo = std::localtime(&currentTime);
     //i have a new file fih customers last month bills, lazem ndkhel jded
     //lzm i get this date month!
-
-
-    //function can be only called first of the month
-    if(timeInfo->tm_mday==1)
-   { fstream monthlyBill;
-    //we'll be comparing this to that
-    Customer* winTemp = nullptr;
+    fstream monthlyBill;
     monthlyBill.open("monthlybill.txt");
     string line;
     getline(monthlyBill,line);
@@ -128,36 +122,26 @@ void Company::setBillFile()
         auto billToBeInserted = Bill(stod(injectionAmount),stod(consumptionAmount));
           BinarySearchTree* customerTreeRoot = countries[stoi(countryPart)].getCountryRegions()[stoi(RegionPart)].getRegionCities()[stoi(CityPart)].getDistricts()[stoi(DistrictPart)].getCustomers();
 
-          Customer* a = customerTreeRoot->contains(stoi(UniquePart));
+          Customer* a = customerTreeRoot->contain(stoi(UniquePart));
 
+          auto now = std::chrono::system_clock::now();
 
+  std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
 
-
+  std::tm *timeInfo = std::localtime(&currentTime);
   int monthNow = timeInfo->tm_mon+1;
   int yearNow = timeInfo->tm_year;
 
   a->getCustomerBills()[yearNow-2020][monthNow] = billToBeInserted;
-            //we update the customer's cmltv thingie, the new one
-          a->updateAmount(stod(injectionAmount));
-
-          if(a->getComulativeAmount()>winTemp->getComulativeAmount() || !winTemp)
-          {
-            //idk if that is possible
-            winTemp = a;
-          }
-         // i still need to update customer cumulative thingie + keep track of winner
+         
           
           
     }
     monthlyBill.close();
-}
-else
-{
-  cout<<"mazal l7al hh";
-}
     
 
 }
+
 
 
 vector<Department> Company::orderAlldepartement()
@@ -235,8 +219,12 @@ void Company::storeNewDepartment(vector<Department> newdprtmnt)
   departmentsStored.push_back(newdprtmnt);
 }
 
+void Company::getDepartmentPerformance(int startYear, int endYear)
+{
+  
+}
 
-Customer* Company::getWinnerCustomer()
+Customer Company::getWinnerCustomer()
 {
   return winner;
 }
@@ -247,63 +235,7 @@ bool Company::comparedep(Department a, Department b)
   return a.getBudget() > b.getBudget();
 }
 
-
-void Company::storeNewDepartment(vector<Department> newdprtmnt)
-{
-
-  departmentsStored.push_back(newdprtmnt);
-}
-
-void Company::getDepartmentPerformance(int startYear, int startMonth, int endYear, int endMonth)
-{
-
-  vector<depart> AllDepPer;
-
-  for (int i = 0; i < countries.size(); i++)
-  {
-    for (int j = 0; j < countries[i].getCountryRegions().size(); j++)
-    {
-      for (int c = 0; c < countries[i].getCountryRegions()[j].getRegionCities().size(); c++)
-      {
-        depart dep1;
-        dep1.namedep = countries[i].getCountryRegions()[j].getRegionCities()[c].getDepartment().getDepartmentName();
-        dep1.IDdep = countries[i].getCountryRegions()[j].getRegionCities()[c].getDepartment().getDepartmentid();
-
-        for (size_t d = 0; d < countries[i].getCountryRegions()[j].getRegionCities()[c].getDistricts().size(); d++)
-        {
-          dep1.performence += countries[i].getCountryRegions()[j].getRegionCities()[c].getDistricts()[d].OneDestrictPerf(startYear, startMonth, endYear, endMonth);
-        }
-        AllDepPer.push_back(dep1);
-        dep1.performence = 0;
-      }
-    }
-  }
-
-  // sort the vector depends on the performence
-
-  sort(AllDepPer.begin(), AllDepPer.end(), compardep2);
-
-  // print the vector
-
-  for (int i = 0; i < AllDepPer.size(); i++)
-  {
-    cout << "Departement ID : " << AllDepPer[i].IDdep << ", Departement Name : " << AllDepPer[i].namedep << ", its performence : " << AllDepPer[i].performence << " . " << endl;
-  }
-}
-
-bool Company::compardep2(depart a, depart b)
-{
-  return a.performence > b.performence;
-}
-
-Customer* Company::getWinnerCustomer()
-{
-  return winner;
-}
-
-
-
-void Company::printBillForOneCustome(BinarySearchTree *root, int idcust, int yearStart, int yearEnd, int monthStart, int monthEnd)
+void Company::printBillForOneCustomer(BinarySearchTree *root, int idcust, int yearStart, int yearEnd, int monthStart, int monthEnd)
 {
   auto now = std::chrono::system_clock::now();
 
@@ -319,7 +251,7 @@ void Company::printBillForOneCustome(BinarySearchTree *root, int idcust, int yea
 
   BinarySearchTree *customerTreeRoot = root;
   // remember that a customer should exist, donc do checkings
-  Customer *a = customerTreeRoot->contains(idcust);
+  Customer *a = customerTreeRoot->contain(idcust);
 
   // remember rak triyeh tmed choix to the customer in the main, i.e nta tqolo wsh hab ydkhl or wsh hab ychof, tsma yk 3amar 3la qisek
   if (yearStart != 0 && yearEnd == 0 && monthEnd == 0 && monthStart == 0)
@@ -367,7 +299,7 @@ void Company::printBillForOneCustome(BinarySearchTree *root, int idcust, int yea
     else
     {
       // interval given..
-      for (int i = a->hashyear(yearStart) ; i < a->hashyear(yearEnd) ; i++)
+      for (int i = a->hashyear(yearStart) - 1; i < a->hashyear(yearEnd) - 1; i++)
       {
         for (int j = monthStart - 1; i < monthEnd - 1; j++)
         {
@@ -388,7 +320,7 @@ void Company::inOrderTraversal(BinaryNode *root, BinarySearchTree *rot, int year
 
   inOrderTraversal(root->left, rot,yearStart, yearEnd, monthStart, monthEnd);
 
-  printBillForOneCustome(rot, root->element.getID(), yearStart, yearEnd, monthStart, monthEnd);
+  printBillForOneCustomer(rot, root->element.getID(), yearStart, yearEnd, monthStart, monthEnd);
 
   inOrderTraversal(root->right,rot,yearStart, yearEnd, monthStart, monthEnd);
 }
@@ -453,135 +385,3 @@ void Company::printBillCity(string cityID, int yearStart, int yearEnd, int month
     inOrderTraversal(countries[stoi(countryPart)].getCountryRegions()[stoi(RegionPart)].getRegionCities()[stoi(CityPart)].getDistricts()[stoi(DistrictPart)].getCustomers()->getroot(), countries[stoi(countryPart)].getCountryRegions()[stoi(RegionPart)].getRegionCities()[stoi(CityPart)].getDistricts()[stoi(DistrictPart)].getCustomers(), yearStart, yearEnd, monthStart, monthEnd); // print the bills for a period of a customer
   }
 
-
-
-
-void Company::callprint(string id, int yearStart, int yearEnd, int monthStart, int monthEnd)
-{
-  
-  size_t count =0;
-  
-  for (size_t i = 0; i <id.length(); i++)
-  {
-    if ( &id[i] == "-")
-    {
-      count++;
-    }
-    
-  }
-  
-
-  switch (count)
-  {
-  case 0:
-    printBillCountry( id,  yearStart,  yearEnd,  monthStart,  monthEnd);
-
-        break;
-  case 1:
-   printBillRegion( id,  yearStart,  yearEnd,  monthStart,  monthEnd);
-    break;
-    case 2 :
-    printBillCity( id,  yearStart,  yearEnd,  monthStart,  monthEnd);
-    break;
-    case 3:
-    printBillDistrict(id,  yearStart,  yearEnd,  monthStart,  monthEnd);
-    break;
-    case 4:
-    printBillForOneCustomer(id, yearStart, yearEnd, monthStart, monthEnd);
-    break;
-
-        default :cout<<"not valid";
-         break;
-  } 
-}
-
-
-
-
-
-void Company::printBillForOneCustomer(string givenID, int yearStart, int yearEnd, int monthStart, int monthEnd)
-{
-  auto now = std::chrono::system_clock::now();
-
-  std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
-
-  std::tm *timeInfo = std::localtime(&currentTime);
-  int todayMonth = timeInfo->tm_mon + 1;    // Adding 1 to make it human-readable
-  int todayYear = timeInfo->tm_year + 1900; // Adding 1900 to get the actual year
-
-  string customerID = givenID;
-
-  // now neqsm my id for fast access :
-
-  string countryPart = customerID.substr(0, customerID.find_first_of("-"));
-  customerID = customerID.substr(customerID.find_first_of("-") + 1);
-  string RegionPart = customerID.substr(0, customerID.find_first_of("-"));
-  customerID = customerID.substr(customerID.find_first_of("-") + 1);
-  string CityPart = customerID.substr(0, customerID.find_first_of("-"));
-  customerID = customerID.substr(customerID.find_first_of("-") + 1);
-  string DistrictPart = customerID.substr(0, customerID.find_first_of("-"));
-  customerID = customerID.substr(customerID.find_first_of("-") + 1);
-  string UniquePart = customerID.substr(0, customerID.find_first_of("-"));
-  customerID = customerID.substr(customerID.find_first_of("-") + 1);
-
-  BinarySearchTree *customerTreeRoot = countries[stoi(countryPart)].getCountryRegions()[stoi(RegionPart)].getRegionCities()[stoi(CityPart)].getDistricts()[stoi(DistrictPart)].getCustomers();
-  // remember that a customer should exist, donc do checkings
-  Customer *a = customerTreeRoot->contains(stoi(UniquePart));
-
-  // remember rak triyeh tmed choix to the customer in the main, i.e nta tqolo wsh hab ydkhl or wsh hab ychof, tsma yk 3amar 3la qisek
-  if (yearStart != 0 && yearEnd == 0 && monthEnd == 0 && monthStart == 0)
-  {
-    // print based on a specific year
-    if (yearStart == todayYear)
-      for (int i = 0; i < todayMonth - 1; i++)
-      {
-        a->getCustomerBills()[yearStart][i].print();
-      }
-    else
-    {
-      for (int i = 0; i < 12; i++)
-      {
-        a->getCustomerBills()[yearStart][i].print();
-      }
-    }
-  }
-  else if (monthStart != 0 && monthEnd == 0)
-  {
-    // print for a specific month
-    // if year given
-    if (yearStart != 0)
-    {
-      // make sure that fel main ndiro logical checkings
-      a->getCustomerBills()[yearStart][monthStart].print();
-    }
-    else
-    {
-      a->getCustomerBills()[todayYear][monthStart].print();
-    }
-  }
-  else if (monthStart != 0 && monthEnd != 0 && yearStart != 0)
-  {
-    // a period was given
-    // check ida kayn an interval for year
-    if (!yearEnd)
-    {
-      // mkch
-      for (int i = monthStart - 1; i < monthEnd - 1; i++)
-      {
-        a->getCustomerBills()[yearStart][i];
-      }
-    }
-    else
-    {
-      // interval given..
-      for (int i = yearStart - 1; i < yearEnd - 1; i++)
-      {
-        for (int j = monthStart - 1; i < monthEnd - 1; j++)
-        {
-          a->getCustomerBills()[i][j].print();
-        }
-      }
-    }
-  }
-  //what we could do instead, f default args n7ato current month, will be discussed with the girls
-}

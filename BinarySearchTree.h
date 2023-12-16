@@ -1,4 +1,3 @@
-
 #ifndef BINARY_SEARCH_TREE_H
 #define BINARY_SEARCH_TREE_H
 
@@ -9,7 +8,7 @@ using namespace std;
 
 // BinarySearchTree class
 //
-// CONSTRUCTION: zero parameter
+// RUCTION: zero parameter
 //
 // ******************PUBLIC OPERATIONS*********************
 // void insert( x )       --> Insert x
@@ -23,32 +22,27 @@ using namespace std;
 // ******************ERRORS********************************
 // Throws UnderflowException as warranted
 
-// template <typename Customer>
-
-
 // 5arajna hed struct + ahbet l public we added function get root
 
- struct BinaryNode
-    {
-        Customer element;
-        BinaryNode *left;
-        BinaryNode *right;
+struct BinaryNode
+{
+    Customer element;
+    BinaryNode *left;
+    BinaryNode *right;
 
-        BinaryNode(const Customer &theElement, BinaryNode *lt, BinaryNode *rt)
-            : element{theElement}, left{lt}, right{rt} {}
+    BinaryNode(Customer &theElement, BinaryNode *lt, BinaryNode *rt)
+        : element{theElement}, left{lt}, right{rt} {}
 
-        BinaryNode(Customer &&theElement, BinaryNode *lt, BinaryNode *rt)
-            : element{std::move(theElement)}, left{lt}, right{rt} {}
-    };
+    BinaryNode(Customer &&theElement, BinaryNode *lt, BinaryNode *rt)
+        : element{std::move(theElement)}, left{lt}, right{rt} {}
+};
 
 class BinarySearchTree
 {
 private:
-   
-
     BinaryNode *root;
 
-    void insert(const Customer &x, BinaryNode *&t)
+    void insert(Customer x, BinaryNode *&t)
     {
         if (t == nullptr)
             t = new BinaryNode{x, nullptr, nullptr};
@@ -59,19 +53,18 @@ private:
         else
             ; // Duplicate; do nothing
     }
-
-    void remove(const Customer &x, BinaryNode *&t)
+    void remov(Customer x, BinaryNode *&t)
     {
         if (t == nullptr)
             return; // Item not found; do nothing
         if (x.getID() < t->element.getID())
-            remove(x, t->left);
+            remov(x, t->left);
         else if (t->element.getID() < x.getID())
-            remove(x, t->right);
+            remov(x, t->right);
         else if (t->left != nullptr && t->right != nullptr) // Two children
         {
             t->element = findMin(t->right)->element;
-            remove(t->element, t->right);
+            remov(t->element, t->right);
         }
         else
         {
@@ -81,7 +74,7 @@ private:
         }
     }
 
-    BinaryNode *findMin(BinaryNode *t) const
+    BinaryNode *findMin(BinaryNode *t)
     {
         if (t == nullptr)
             return nullptr;
@@ -90,7 +83,7 @@ private:
         return findMin(t->left);
     }
 
-    Customer findMax(BinaryNode *t) const
+    Customer findMax(BinaryNode *t)
     {
         if (t != nullptr)
             while (t->right != nullptr)
@@ -98,10 +91,10 @@ private:
         return t->element;
     }
 
-    Customer *contains(int x, BinaryNode *t) const
+    Customer *contains(int x, BinaryNode *t)
     {
         if (t == nullptr)
-            return;
+            return nullptr;
         else if (x < t->element.getID())
             return contains(x, t->left);
         else if (t->element.getID() < x)
@@ -109,7 +102,7 @@ private:
         else
             return &(t->element);
     }
-    void makeEmpty(BinaryNode *&t)
+    void makeEmpty(BinaryNode *t)
     {
         if (t != nullptr)
         {
@@ -131,7 +124,7 @@ public:
         return root;
     }
 
-    BinarySearchTree(BinarySearchTree &&rhs) : root{rhs.root}
+    BinarySearchTree(BinarySearchTree &rhs) : root{rhs.root}
     {
         rhs.root = nullptr;
     }
@@ -140,33 +133,42 @@ public:
     {
         makeEmpty();
     }
-
-    BinarySearchTree &operator=(BinarySearchTree &&rhs)
+    void print(BinaryNode *root)
+    {
+        if (root == nullptr)
+        {
+            return;
+        }
+        print(root->left);
+        root->element.print();
+        print(root->right);
+    }
+    BinarySearchTree operator=(BinarySearchTree rhs)
     {
         std::swap(root, rhs.root);
         return *this;
     }
 
-    const Customer &findMin() const
+    Customer findMin()
     {
         if (isEmpty())
             throw UnderflowException{};
         return findMin(root)->element;
     }
 
-    Customer findMax() const
+    Customer findMax()
     {
         if (isEmpty())
             throw UnderflowException{};
         return findMax(root);
     }
 
-    Customer *contains(int x) const
+    Customer *contain(int x)
     {
         return contains(x, root);
     }
 
-    bool isEmpty() const
+    bool isEmpty()
     {
         return root == nullptr;
     }
@@ -176,15 +178,16 @@ public:
         makeEmpty(root);
     }
 
-    void insert(const Customer &x)
+    void insert(Customer x)
     {
         insert(x, root);
     }
 
-    void remove(const Customer &x)
+    void remove(Customer x)
     {
-        remove(x, root);
+        remov(x, root);
     }
 };
 
 #endif
+

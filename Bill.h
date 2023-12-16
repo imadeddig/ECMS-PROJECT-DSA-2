@@ -1,10 +1,10 @@
-#ifndef BILL_H
-#define BILL_H
-#include"Customer.h"
+#include <iostream>
+using namespace std;
+
 class Bill
 {
 private:
-int billMonth;
+    int billMonth;
     double EnergyConsumption;
     double EnergyInjection;
     double PriceTotalConsumption;
@@ -15,7 +15,8 @@ int billMonth;
     void setTotalDifference();
 
 public:
-    Bill(const double&, const double&);
+    Bill(const double &, const double &);
+    Bill();
     void setBill(const double &, const double &);
     double getEnergyInjection();
     double getEnergyConsumption();
@@ -24,7 +25,3 @@ public:
     double getTotalDifference();
     void print();
 };
-
-
-
-#endif

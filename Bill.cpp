@@ -1,10 +1,14 @@
 #include "Bill.h"
-#include<cmath>
+#include <cmath>
 Bill::Bill(const double &c = 0, const double &i = 0)
 {
     setEnergyConsumption(c);
     setEnergyInjection(i);
     setTotalDifference();
+}
+
+Bill::Bill()
+{
 }
 
 void Bill::setBill(const double &c, const double &i)
@@ -13,8 +17,6 @@ void Bill::setBill(const double &c, const double &i)
     setEnergyInjection(i);
     setTotalDifference();
 }
-
-
 
 void Bill::setEnergyConsumption(const double &c)
 {
@@ -60,12 +62,12 @@ double Bill::getTotalDifference()
 
 void Bill::print()
 {
-    cout << "The Energy Consumed: " << getEnergyConsumption()<< endl;
+    cout << "The Energy Consumed: " << getEnergyConsumption() << endl;
     cout << "The Energy Injected: " << getEnergyInjection() << endl;
     cout << "The Price of The Energy Consumed: " << getEnergyConsumption() << endl;
     cout << "The Price of The Energy Injected: " << getEnergyConsumption() << endl;
-    if(TotalDifference<0)
-    cout << "The Customer will be payed : " << abs(getTotalDifference()) <<" DA"<< endl;
-    else 
-        cout << "The Customer will  pay : " << getTotalDifference() <<"DA"<< endl;
+    if (TotalDifference < 0)
+        cout << "The Customer will be payed : " << abs(getTotalDifference()) << " DA" << endl;
+    else
+        cout << "The Customer will  pay : " << getTotalDifference() << "DA" << endl;
 }

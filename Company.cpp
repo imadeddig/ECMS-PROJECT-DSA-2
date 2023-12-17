@@ -385,3 +385,39 @@ void Company::printBillCity(string cityID, int yearStart, int yearEnd, int month
     inOrderTraversal(countries[stoi(countryPart)].getCountryRegions()[stoi(RegionPart)].getRegionCities()[stoi(CityPart)].getDistricts()[stoi(DistrictPart)].getCustomers()->getroot(), countries[stoi(countryPart)].getCountryRegions()[stoi(RegionPart)].getRegionCities()[stoi(CityPart)].getDistricts()[stoi(DistrictPart)].getCustomers(), yearStart, yearEnd, monthStart, monthEnd); // print the bills for a period of a customer
   }
 
+void Company::getDepartmentPerformance(int startYear, int startMonth, int endYear, int endMonth)
+{
+
+  vector<depart> AllDepPer;
+
+  for (int i = 0; i < countries.size(); i++)
+  {
+    for (int j = 0; j < countries[i].getCountryRegions().size(); j++)
+    {
+      for (int c = 0; c < countries[i].getCountryRegions()[j].getRegionCities().size(); c++)
+      {
+        depart dep1;
+        dep1.namedep = countries[i].getCountryRegions()[j].getRegionCities()[c].getDepartment().getDepartmentName();
+        dep1.IDdep = countries[i].getCountryRegions()[j].getRegionCities()[c].getDepartment().getDepartmentid();
+
+        for (size_t d = 0; d < countries[i].getCountryRegions()[j].getRegionCities()[c].getDistricts().size(); d++)
+        {
+          dep1.performence += countries[i].getCountryRegions()[j].getRegionCities()[c].getDistricts()[d].OneDestrictPerf(startYear, startMonth, endYear, endMonth);
+        }
+        AllDepPer.push_back(dep1);
+        dep1.performence = 0;
+      }
+    }
+  }
+
+  // sort the vector depends on the performence
+
+  sort(AllDepPer.begin(), AllDepPer.end(), compardep2);
+
+  // print the vector
+
+  for (int i = 0; i < AllDepPer.size(); i++)
+  {
+    cout << "Departement ID : " << AllDepPer[i].IDdep << ", Departement Name : " << AllDepPer[i].namedep << ", its performence : " << AllDepPer[i].performence << " . " << endl;
+  }
+}

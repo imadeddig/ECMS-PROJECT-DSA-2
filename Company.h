@@ -22,6 +22,12 @@ private:
     vector<vector<Department>> departmentsStored;
     vector<Country> countries;
     Customer winner;
+  struct depart
+    {
+        string namedep;
+        string IDdep;
+        double performence = 0;
+    };
 
 public:
     Company();
@@ -30,7 +36,7 @@ public:
     // storing the new stored department into the all sorted departmentf of the last year
     void storeNewDepartment(vector<Department>);
     // get performance of departments
-    void getDepartmentPerformance(int startYear = 0, int endYear = 0);
+    void getDepartmentPerformance(int startYear = 0, int endYear = 0 , int startmonth = 0 ; int endmonth = 0);
     // return customer with most injection
     Customer getWinnerCustomer();
     // printing customers bills based on user choice
@@ -46,6 +52,7 @@ public:
     bool comparedep(Department, Department);
     void inOrderTraversal(BinaryNode *root, BinarySearchTree*,int yearStart, int yearEnd, int monthStart, int monthEnd);
     void printBillForOneCustomer(BinarySearchTree *root, int idcust, int yearStart=0, int yearEnd=0, int monthStart=0, int monthEnd=0);
+ bool compardep2(depart, depart);
 };
 #endif
 

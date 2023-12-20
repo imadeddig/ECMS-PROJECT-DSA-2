@@ -5,13 +5,15 @@ using namespace std;
 
 HashWeather::HashWeather()
 {
+    cout<<"star yeather";
+   
     currentSize = 10;
     yearsweather.resize(currentSize);
     for (int i = 0; i < currentSize;i++)
     {
         yearsweather[i].yearNum = 0; 
     }
-    
+     cout<<"end yeather";
 }
 
 

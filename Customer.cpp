@@ -8,6 +8,8 @@ Customer::Customer()
 Customer::Customer(const string &name, const string &id, vector<int> ages, double amount, int day, int mouth, int year, string adress)
 {
 
+    cout <<"strar cust ";
+
     customerBills.resize(3);
     for (size_t i = 0; i < 3; i++)
     {
@@ -23,6 +25,7 @@ Customer::Customer(const string &name, const string &id, vector<int> ages, doubl
 
     ifstream Bil;
     Bil.open("bill.txt");
+    
     string line;
     getline(Bil, line);
 
@@ -33,40 +36,52 @@ Customer::Customer(const string &name, const string &id, vector<int> ages, doubl
 
         if (custid == ID)
         {
+            
             string billyear = line.substr(0, line.find_first_of(','));
-
             line = line.substr(line.find_first_of(',') + 1);
             string billmouth = line.substr(0, line.find_first_of(','));
-
             line = line.substr(line.find_first_of(',') + 1);
             string injaction = line.substr(0, line.find_first_of(','));
-
             line = line.substr(line.find_first_of(',') + 1);
             string consumption = line.substr(0, line.find_first_of(','));
-
             line = line.substr(line.find_first_of(',') + 1);
             string cumulative = line.substr(0, line.find_first_of(','));
 
-            Bill billl = Bill(stod(injaction), stod(consumption));
+            Bill billl = Bill(stoi(injaction), stoi(consumption));
 
-            if (hashyear(stoi(billyear)) >= customerBills.size())
+            if (hashyear(stoi(billyear)) >= customerBills.size() - 1)
             {
-                vector<Bill> bbill;
-                customerBills.push_back(bbill);
-                customerBills[customerBills.size() + 1].resize(12);
+                for (size_t i = 0; i < hashyear(stoi(billyear)); i++)
+                {
+                    vector<Bill> bbill(12);
+                    customerBills.push_back(bbill);
+                }
             }
+
             customerBills[hashyear(stoi(billyear))][hashmouth(stoi(billmouth))].operator=(billl);
+           
+           
         }
     }
-    cout << "a";
+    cout << "end cust";
 }
 int Customer::hashyear(int y)
 {
+    if (y<2020)
+    {
+        return -1 ;
+    }
+    
     return y - 2020;
 }
 
 int Customer::hashmouth(int a)
 {
+    if (a<1)
+    {
+       return -1 ;
+    }
+    
     return a - 1;
 }
 
@@ -161,3 +176,4 @@ string Customer::getAdress()
 {
     return address;
 }
+

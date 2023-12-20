@@ -4,10 +4,11 @@
 
 Country::Country(string name, string id)
 {
+   cout<<"start Country"<<endl;
   countryID=id;
   countryName=name;
 
-  ifstream file("region.csv");
+  ifstream file("region.txt");
   vector<string> idRegions;
   vector<string> nameRegions;
 
@@ -20,8 +21,11 @@ Country::Country(string name, string id)
     while (getline(file, Idregion, ','))
     {
       getline(file, NameRegion);
+      
       idRegions.push_back(Idregion);
+     cout<<"AKAKAKAKAKAKAKAKAAK AK"<<Idregion ; 
       nameRegions.push_back(NameRegion);
+      cout<<"AKAKAKAKAKAKAKAKAAK AK"<<NameRegion ;
     }
 
     file.close();
@@ -34,13 +38,16 @@ Country::Country(string name, string id)
 
   for (int i = 0; i < idRegions.size(); i++)
   {
-
+cout<<"csj"<<countryID<<endl;
 if(idRegions[i].substr(0,idRegions[i].find_first_of('-')) == countryID){
 
-  regions.push_back(Region(idRegions[i],nameRegions[i]));
+ 
+  regions.push_back(Region(nameRegions[i],idRegions[i]));
+  cout<<"YANI"<<regions[i].getRegionName()<<endl;
 }
 
   }
+  cout<<"end country";
 }
 
 
@@ -58,5 +65,3 @@ vector<Region> Country::getCountryRegions()
 {
   return regions;
 }
-
-

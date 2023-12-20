@@ -1,9 +1,8 @@
-#ifndef DISTRICT_H
-#define DISTRICT_H
+
 #include <string>
 #include "YearWeather.h"
 #include "BinarySearchTree.h"
-#include "Customer.h"
+
 #include <iostream>
 using namespace std;
 #include <vector>
@@ -13,7 +12,9 @@ class District
     string districtName;
     string districtID;
     int numOfCustomers=0;
-    BinarySearchTree *customersTree; // customers that are in that region
+
+    BinarySearchTree *customersTree = new BinarySearchTree();
+ // customers that are in that region
     HashWeather  climate;
     double cd=0;
     //for ids, there should be a counter globally in order to set the id
@@ -27,11 +28,11 @@ class District
     HashWeather getWeather();
 
 // new functions
-    double OneDestrictPerf(int startYear = 0,int startMonth = 0, int endYear = 0, int endMonth = 0);
+    double OneDestrictPerf(int startYear ,int startMonth , int endYear , int endMonth );
 
-    double getcumulativeofallcust(BinaryNode *,int startYear = 0,int startMonth = 0, int endYear = 0, int endMonth = 0);
+    double getcumulativeofallcust(BinaryNode *,int startYear ,int startMonth , int endYear , int endMonth);
 };
-#endif
+
 
 // Sugesstion
 // 1: the get Dayweather isn't neccessary since the district class contains the hashweather which conatains the years and the waether of each day so it has the complete access wheter to have the information or set it (so we have to reset the day struct as a data member of the class hashweather)  

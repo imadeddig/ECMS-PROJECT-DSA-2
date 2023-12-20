@@ -2,9 +2,11 @@
 #include <cmath>
 Bill::Bill(const double &c = 0, const double &i = 0)
 {
+    cout<<"star bill";
     setEnergyConsumption(c);
     setEnergyInjection(i);
     setTotalDifference();
+    cout<<"end bill";
 }
 
 Bill::Bill()

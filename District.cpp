@@ -4,6 +4,7 @@ using namespace std;
 
 District::District(const string &a, const string &b)
 {
+    cout<<"start District"<<endl;
     districtID = a;
     districtName = b;
 
@@ -14,9 +15,12 @@ District::District(const string &a, const string &b)
     while (getline(customerFile, line))
     {
         string cusID = line.substr(0, line.find_first_of(","));
+        string cusIDtoCompare = cusID.substr(0,cusID.find_last_of("-"));
         line = line.substr(line.find_first_of(",") + 1);
-        if (cusID == districtID)
+             
+        if (cusIDtoCompare == districtID)
         {
+      // cout<<cusIDtoCompare<<"jdjdjd"<<districtID<<endl;
             string name = line.substr(0, line.find_first_of(","));
             line = line.substr(line.find_first_of(",") + 1);
 
@@ -47,20 +51,31 @@ District::District(const string &a, const string &b)
             line = line.substr(line.find_first_of(",") + 1);
 
             Customer customer(name, cusID, ages, stod(cumultive), stoi(dateDay), stoi(dateMonth), stoi(dateYear), address);
+          
             customersTree->insert(customer);
+            
+
+         
         }
+        cout<<"distric endt";
+       
     }
-    customerFile.close();
+     customerFile.close();
 
     HashWeather();
+ 
     fstream weatherFile;
-    weatherFile.open("weathers.txt");
-    string line;
+    weatherFile.open("weather.txt");
+    line="";
+    // cout<<"mama2"<<endl;
     getline(weatherFile, line);
+    
     while (getline(weatherFile, line))
 
     {
+        
         string Id = line.substr(0, line.find_first_of(","));
+        //cout<<"zfkj"<<Id<<endl;
         line = line.substr(line.find_first_of(",") + 1);
         string year = line.substr(0, line.find_first_of(","));
         line = line.substr(line.find_first_of(",") + 1);
@@ -98,6 +113,7 @@ District::District(const string &a, const string &b)
     }
 
     weatherFile.close();
+        cout<<"start District"<<endl;
 }
 
 string District::getDistrictID()
@@ -135,8 +151,6 @@ HashWeather District::getWeather()
 
 double District::OneDestrictPerf(int startYear = 0, int startMonth = 0, int endYear = 0, int endMonth = 0)
 {
-
-    return getcumulativeofallcust(customersTree->getroot(), startYear, startMonth, endYear, endMonth);
 }
 
 double District::getcumulativeofallcust(BinaryNode *t, int min = 0, int minmou = 0, int max = 0, int maxmouth = 0)
@@ -188,3 +202,4 @@ double District::getcumulativeofallcust(BinaryNode *t, int min = 0, int minmou =
 
     return cd + getcumulativeofallcust(t->left) + getcumulativeofallcust(t->right);
 }
+

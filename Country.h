@@ -1,7 +1,5 @@
-#ifndef COUNTRY_H
-#define COUNTRY_H
+
 #include "Region.h"
-#include "Customer.h"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -21,4 +19,3 @@ public:
     vector<Region> getCountryRegions();
    
 };
-#endif

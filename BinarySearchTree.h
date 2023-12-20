@@ -30,11 +30,11 @@ struct BinaryNode
     BinaryNode *left;
     BinaryNode *right;
 
-    BinaryNode(Customer &theElement, BinaryNode *lt, BinaryNode *rt)
-        : element{theElement}, left{lt}, right{rt} {}
+   BinaryNode(const Customer &theElement, BinaryNode *lt, BinaryNode *rt)
+        : element(theElement), left(lt), right(rt) {}
 
     BinaryNode(Customer &&theElement, BinaryNode *lt, BinaryNode *rt)
-        : element{std::move(theElement)}, left{lt}, right{rt} {}
+        : element(std::move(theElement)), left(lt), right(rt) {}
 };
 
 class BinarySearchTree
@@ -42,21 +42,25 @@ class BinarySearchTree
 private:
     BinaryNode *root;
 
-    void insert(Customer x, BinaryNode *&t)
+    void insert(const Customer &x, BinaryNode *&t)
     {
         if (t == nullptr)
-            t = new BinaryNode{x, nullptr, nullptr};
+           { t = new BinaryNode(x, nullptr, nullptr);
+            cout<<endl<<"its here"<<endl;}
         else if (x.getID() < t->element.getID())
-            insert(x, t->left);
-        else if (t->element.getID() < x.getID())
-            insert(x, t->right);
-        else
-            ; // Duplicate; do nothing
+            {insert(x, t->left);
+             cout<<endl<<"its here 2"<<endl;}
+        else if (x.getID() > t->element.getID())
+           { insert(x, t->right);
+             cout<<endl<<"its here 3"<<endl;}
+              cout<<endl<<"its here 4"<<endl;
     }
+
     void remov(Customer x, BinaryNode *&t)
     {
         if (t == nullptr)
-            return; // Item not found; do nothing
+            { // Item not found; do nothing
+           return;}
         if (x.getID() < t->element.getID())
             remov(x, t->left);
         else if (t->element.getID() < x.getID())
@@ -68,6 +72,7 @@ private:
         }
         else
         {
+            
             BinaryNode *oldNode = t;
             t = (t->left != nullptr) ? t->left : t->right;
             delete oldNode;
@@ -121,6 +126,7 @@ public:
     // get root
     BinaryNode *getroot()
     {
+       
         return root;
     }
 
@@ -133,10 +139,11 @@ public:
     {
         makeEmpty();
     }
-    void print(BinaryNode *root)
-    {
+    void print(BinaryNode *&root)
+    {  
         if (root == nullptr)
         {
+          
             return;
         }
         print(root->left);
@@ -180,7 +187,9 @@ public:
 
     void insert(Customer x)
     {
+cout<<"aaaaa";
         insert(x, root);
+        cout<<"eeeee";
     }
 
     void remove(Customer x)

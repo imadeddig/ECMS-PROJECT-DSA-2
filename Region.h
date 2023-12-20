@@ -1,8 +1,7 @@
-#ifndef REGION_H
-#define REGION_H
+
 #include <iostream>
 #include "City.h"
-#include "Customer.h"
+
 #include <vector>
 using namespace std;
 class Region{
@@ -18,4 +17,3 @@ class Region{
     string getRegionID();
     vector<City> getRegionCities();
 };
-#endif

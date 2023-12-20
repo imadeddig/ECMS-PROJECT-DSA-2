@@ -1,9 +1,9 @@
-#include "Department.h"
-#include"City.h"
-#include "Company.h"
+#include"Departement.h"
+
 
 Department::Department()
 {
+
 }
 
 Department::Department(string name="", string id="", float bud=0, float spent=0)
@@ -18,7 +18,7 @@ Department::Department(string name="", string id="", float bud=0, float spent=0)
     
        budget=bud;
     
-    
+    cout<<endl<<"department"<<endl;
 }
 
 string Department::getDepartmentid()
@@ -71,3 +71,4 @@ void Department::setspent(float amount)
        spent = spent - amount;
     }
 }
+

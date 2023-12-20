@@ -1,5 +1,4 @@
-#ifndef DEPARTMENT_H
-#define DEPARTMENT_H
+
 #include <string>
 #include <iostream>
 using namespace std;
@@ -26,5 +25,5 @@ public:
     
     string getDepartmentName();
     ~Department();
+   
 };
-#endif
